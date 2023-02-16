@@ -14,4 +14,6 @@
 * Pixel XL API 30
 * Android 11.0 x86
 
+*Telegram: @nikesh*
+
 ![](https://kartinkof.club/uploads/posts/2022-03/thumbs/1648237694_2-kartinkof-club-p-ya-russkii-mem-kot-2.jpg)
