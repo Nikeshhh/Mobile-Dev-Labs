@@ -59,8 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'Значение инкремента:',
+              style: TextStyle(
+                fontSize: _counter.toDouble()
+              ),
             ),
             Text(
               '$_counter',
@@ -93,6 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               onPressed: _setDefault,
+              style: TextButton.styleFrom(
+                  splashFactory: NoSplash.splashFactory
+              ),
               child: const Text(
                 'СБРОСИТЬ',
                 style: TextStyle(
