@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
+void main() { // Точка входа
   runApp(const MyApp());
 }
 
@@ -9,12 +9,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp( // Основной родительский виджет
+      title: 'My first application',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Инкремент'),
+      home: const MyHomePage(title: 'Инкремент'), //
     );
   }
 }
@@ -31,19 +31,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() { // Инкрементация счетчика
     setState(() {
       _counter++;
     });
   }
 
-  void _decrementCounter(){
+  void _decrementCounter(){ // Декрементация счетчика
     setState(() {
       _counter--;
     });
   }
 
-  void _setDefault(){
+  void _setDefault(){ // Установка счетчика в изначальное значение
     setState(() {
       _counter = 0;
     });
@@ -59,10 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Значение инкремента:',
-              style: TextStyle(
-                fontSize: _counter.toDouble()
+            Container(
+              alignment: Alignment.bottomCenter,
+              width: 300,
+              height: 100,
+              child: Text(
+                'Значение инкремента:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: _counter.toDouble(),
+                ),
               ),
             ),
             Text(
