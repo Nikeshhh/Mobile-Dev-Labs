@@ -1,115 +1,124 @@
 import 'package:flutter/material.dart';
 
-void main() {
+void main() { // Точка входа
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { // Класс основого родительского виджета
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp( // Основной родительский виджет
+      title: 'My first application',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Инкремент'), // Вложенный виджет 1-го уровня
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget { // Класс виджета 1-го уровня
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  final String title; // Заголовок страницы
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState(); // Создание страницы
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage> { // Класс основной страницы
+  int _counter = 0; // Переменная счетчика
 
-  void _incrementCounter() {
+  void _incrementCounter() { // Инкрементация счетчика
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
 
+  void _decrementCounter(){ // Декрементация счетчика
+    if (_counter > 0){ // Конструкция чтобы счетчик не уходил в минус
+      setState(() {
+        _counter--;
+      });
+    }
+
+  }
+
+  void _setDefault(){ // Установка счетчика в изначальное значение
+    setState(() {
+      _counter = 0;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+  Widget build(BuildContext context) { // Создание вложенного виджета Scaffold
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      appBar: AppBar( // Заголовок виджета
+        title: Text(widget.title), // Текст в заголовке виджета
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: Center( // Тело виджета
+        child: Column( // Виджет Column
+          mainAxisAlignment: MainAxisAlignment.center, // Центрирование виджета
+          children: <Widget>[ // Массив вложенных виджетов
+            Container( // Контейнер для надписи о значении инкремента
+              alignment: Alignment.bottomCenter, // Выравнивание внизу посередине
+              width: 300, // Ширина контейнера
+              height: 100, // Высота контейнера
+              child: Text( // Вложенный текст
+                'Значение инкремента:', // Значение текста
+                textAlign: TextAlign.center, // Выравнение по центру
+                style: TextStyle(
+                    fontSize: _counter.toDouble(), // Присваивание значения размеру шрифта
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Text( // Текст, показывающий счетчик
+              '$_counter', // Вывод переменной счетчика
+              style: const TextStyle(
+                fontSize: 120.0, // Размер шрифта
+              ),
             ),
+            Row( // Виджет строки
+              mainAxisAlignment: MainAxisAlignment.center, // Выравнивание по центру
+              children: [ // Вложенные виджеты
+                TextButton( // Кнопка декрементации
+                    onPressed: _decrementCounter, // Функция, вызываемая при нажатии
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black, // Цвет текста на кнопке
+                      backgroundColor: Colors.red, // Цвет фона кнопки
+                      fixedSize: const Size(90.0, 40.0), // Размеры кнопки
+                    ),
+                    child: const Icon(Icons.remove) // Иконка на кнопке
+                ),
+                TextButton( // Кнопка инкрементации
+                  onPressed: _incrementCounter, // Функция, вызываемая при нажатии
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black, // Цвет текста на кнопке
+                    backgroundColor: Colors.green, // Цвет фона кнопки
+                    fixedSize: const Size(90.0, 40.0) // Размер кнопки
+                  ),
+                  child: const Icon(Icons.add), // Иконка на кнопке
+                ),
+              ],
+            ),
+            TextButton( // Кнопка сброса счетчика
+              onPressed: _setDefault, // Функция, вызываемая при нажатии
+              style: TextButton.styleFrom(
+                  splashFactory: NoSplash.splashFactory // Изменение стиля всплеска от нажатия
+              ),
+              child: const Text( // Текст на кнопке
+                'СБРОСИТЬ', // Значение текста
+                style: TextStyle(
+                  fontSize: 30, // Размер шрифта текста
+                  color: Colors.grey, // Цвет текста
+                ),
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
