@@ -1,4 +1,4 @@
-# lab_3_first_flutter_project
+# lab_3
 
 [Правила компоновки во Flutter, которые должен знать каждый(habr.com)](https://habr.com/ru/post/500210/)
 
