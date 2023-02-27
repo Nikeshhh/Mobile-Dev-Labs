@@ -5,3 +5,28 @@
 [Макеты в Flutter(flutterdocs.ru)](https://flutterdocs.ru/makety-v-flutter/)
 
 [How to create a grid list in Flutter using GridView(blog.logrocket.com)](https://blog.logrocket.com/how-to-create-a-grid-list-in-flutter-using-gridview/)
+
+
+# .gitignore
+
+Файл с перечнем файлов, которые будут игнорироваться гитом
+
+# .metadata
+
+Содержит метаданные проекта
+
+# analysis_options.yaml
+
+Файл с настройками для линтера (анализа синтаксиса)
+
+# pubspec.lock
+
+Автоматически генерируемый файл, с подробно описанными зависимостями проекта
+
+# pubspec.yaml
+
+Файл конфигурации проекта, в котором объявляются зависимости, подключаются необходимые ассеты и шрифты, а также в нем содержится основная информация о проекте, такая как название, описание, версия проекта и т.д.
+
+# .iml файл
+
+Структура проекта в формате, необходимом для IntelliJ IDEA
