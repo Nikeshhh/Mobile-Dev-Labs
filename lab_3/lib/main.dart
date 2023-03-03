@@ -90,9 +90,9 @@ class _MyHomePageState extends State<MyHomePage> { // Класс основно�
                 TextButton( // Кнопка инкрементации
                   onPressed: _incrementCounter, // Функция, вызываемая при нажатии
                   style: TextButton.styleFrom(
-                    foregroundColor: Colors.black, // Цвет текста на кнопке
-                    backgroundColor: Colors.green, // Цвет фона кнопки
-                    fixedSize: const Size(90.0, 40.0) // Размер кнопки
+                      foregroundColor: Colors.black, // Цвет текста на кнопке
+                      backgroundColor: Colors.green, // Цвет фона кнопки
+                      fixedSize: const Size(90.0, 40.0) // Размер кнопки
                   ),
                   child: const Icon(Icons.add), // Иконка на кнопке
                 ),
