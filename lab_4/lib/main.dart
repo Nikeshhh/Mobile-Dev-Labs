@@ -46,36 +46,39 @@ class _MyHomePageState extends State<MyHomePage> {
       body:
       ListView( // Виджет с прокруткой
           children: [
+
               Container( // Виджет для изображения
                 decoration: BoxDecoration(
                   border: Border.all(width: 10, color: Colors.black)
                 ),
                 child: Image.asset('assets/images/sample_image.jpg'),
               ),
-            // Row( // Строка с основной информацией
-            //   children: [
-            //     const ListTile( // Лист тайл с названием общаги и адресом
-            //       title: Text(
-            //         'sample title'
-            //       ), // Название
-            //       subtitle: Text(
-            //         'Sample address'
-            //       ), // Адрес
-            //     ),
-            //     ElevatedButton(
-            //       onPressed: _incrementCounter, // Функция нажатия на кнопку
-            //       child: const Icon( // Иконка сердечка
-            //         Icons.heart_broken
-            //       ),
-            //     ),
-            //     const Text( // Количество лайков
-            //       'asdf'
-            //     )
-            //   ],
-            // ),
-            // Row( // Строка с кнопками
-            //
-            // )
+            Row( // Строка с основной информацией
+              children: [
+                const Expanded(
+                  child: ListTile( // Лист тайл с названием общаги и адресом
+                    title: Text(
+                        'sample title'
+                    ), // Название
+                    subtitle: Text(
+                        'Sample address'
+                    ), // Адрес
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: _incrementCounter, // Функция нажатия на кнопку
+                  child: const Icon( // Иконка сердечка
+                    Icons.label
+                  ),
+                ),
+                const Text( // Количество лайков
+                  'Likes'
+                )
+              ],
+            ),
+            Row( // Строка с кнопками
+
+            )
           ],
       ),
     );
