@@ -124,10 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            const Divider(
-              height: 60,
+            const Divider( // Разделитель кнопок от текста
+              height: 20,
             ),
-            const Text(
+            const Text( // Нижний текст
               'Ну очень длинный текст фаыва ыва лвфыта одйта цудоа цуйода а уцйоадуцдацуайуцад'
             ),
           ],
