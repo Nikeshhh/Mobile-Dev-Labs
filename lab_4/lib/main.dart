@@ -46,10 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body:
       ListView( // Виджет с прокруткой
           children: [
-
               Container( // Виджет для изображения
                 decoration: BoxDecoration(
-                  border: Border.all(width: 10, color: Colors.black)
+                  border: Border.all(width: 3, color: Colors.black)
                 ),
                 child: Image.asset('assets/images/sample_image.jpg'),
               ),
@@ -66,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: _incrementCounter, // Функция нажатия на кнопку
+                  onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
                   child: const Icon( // Иконка сердечка
                     Icons.label
                   ),
@@ -77,8 +76,60 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Row( // Строка с кнопками
-
-            )
+              children: [
+                Expanded(
+                  child: Column( // Кнопка позвонить
+                    children: [
+                      ElevatedButton( // Кнопка позвонить
+                          onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
+                          child: const Icon( // Иконка звонка
+                            Icons.call
+                          )
+                      ),
+                      const Text( // Надпись позвонить
+                        'ПОЗВОНИТЬ'
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column( // Кнопка маршрут
+                    children: [
+                      ElevatedButton(
+                          onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
+                          child: const Icon( // Иконка навигатора
+                            Icons.navigation
+                          )
+                      ),
+                      const Text( // Надпись маршрут
+                        'МАРШРУТ'
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column( // Кнопка поделиться
+                    children: [
+                      ElevatedButton(
+                        onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке,
+                        child: const Icon( // Иконка поделиться
+                          Icons.share
+                        ),
+                      ),
+                      const Text( // Надпись поделиться
+                        'ПОДЕЛИТЬСЯ'
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+              height: 60,
+            ),
+            const Text(
+              'Ну очень длинный текст фаыва ыва лвфыта одйта цудоа цуйода а уцйоадуцдацуайуцад'
+            ),
           ],
       ),
     );
