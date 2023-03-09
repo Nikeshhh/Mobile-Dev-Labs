@@ -45,30 +45,38 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView( // Виджет с прокруткой
           children: [
-            Container( // Виджет для изображения
-
+            Expanded(child:
+              Container( // Виджет для изображения
+                decoration: BoxDecoration(
+                  border: Border.all(width: 10, color: Colors.black)
+                ),
+                child: Image.asset('assets/images/sample_image.jpg'),
+              ),
             ),
             Row( // Строка с основной информацией
               children: [
                 const ListTile( // Лист тайл с названием общаги и адресом
-                  title: , // Название
-                  subtitle: , // Адрес
-
+                  title: Text(
+                    'sample title'
+                  ), // Название
+                  subtitle: Text(
+                    'Sample address'
+                  ), // Адрес
                 ),
                 ElevatedButton(
-                  onPressed: , // Функция нажатия на кнопку
+                  onPressed: _incrementCounter, // Функция нажатия на кнопку
                   child: const Icon( // Иконка сердечка
                     Icons.heart_broken
                   ),
                 ),
-                Text( // Количество лайков
+                const Text( // Количество лайков
                   'asdf'
                 )
               ],
             ),
-            Row( // Строка с кнопками
-
-            )
+            // Row( // Строка с кнопками
+            //
+            // )
           ],
       ),
     );
