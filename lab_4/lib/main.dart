@@ -43,37 +43,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView( // Виджет с прокруткой
+      body:
+      ListView( // Виджет с прокруткой
           children: [
-            Expanded(child:
               Container( // Виджет для изображения
                 decoration: BoxDecoration(
                   border: Border.all(width: 10, color: Colors.black)
                 ),
                 child: Image.asset('assets/images/sample_image.jpg'),
               ),
-            ),
-            Row( // Строка с основной информацией
-              children: [
-                const ListTile( // Лист тайл с названием общаги и адресом
-                  title: Text(
-                    'sample title'
-                  ), // Название
-                  subtitle: Text(
-                    'Sample address'
-                  ), // Адрес
-                ),
-                ElevatedButton(
-                  onPressed: _incrementCounter, // Функция нажатия на кнопку
-                  child: const Icon( // Иконка сердечка
-                    Icons.heart_broken
-                  ),
-                ),
-                const Text( // Количество лайков
-                  'asdf'
-                )
-              ],
-            ),
+            // Row( // Строка с основной информацией
+            //   children: [
+            //     const ListTile( // Лист тайл с названием общаги и адресом
+            //       title: Text(
+            //         'sample title'
+            //       ), // Название
+            //       subtitle: Text(
+            //         'Sample address'
+            //       ), // Адрес
+            //     ),
+            //     ElevatedButton(
+            //       onPressed: _incrementCounter, // Функция нажатия на кнопку
+            //       child: const Icon( // Иконка сердечка
+            //         Icons.heart_broken
+            //       ),
+            //     ),
+            //     const Text( // Количество лайков
+            //       'asdf'
+            //     )
+            //   ],
+            // ),
             // Row( // Строка с кнопками
             //
             // )
