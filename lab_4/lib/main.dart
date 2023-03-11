@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  // Ссылка на место на карте
+  String mapsUrl = 'https://yandex.ru/maps/35/krasnodar/?ll=38.924802%2C45.051164&mode=poi&poi%5Bpoint%5D=38.923352%2C45.050769&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D174355238585&z=17.25';
+
 
   void _incrementCounter() {
     setState(() {
@@ -65,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ), // Адрес
                   ),
                 ),
-                ElevatedButton(
+                ElevatedButton( // Кнопка лайка
                   onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
                   child: const Icon( // Иконка сердечка
                     Icons.label
@@ -97,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column( // Кнопка маршрут
                     children: [
                       ElevatedButton(
-                          onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
+                          onPressed: () => launch(mapsUrl), // Функция нажатия на кнопку маршрут TODO: Сделать маршрут а не ссылку на место
                           child: const Icon( // Иконка навигатора
                             Icons.navigation
                           )
@@ -112,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column( // Кнопка поделиться
                     children: [
                       ElevatedButton(
-                        onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке,
+                        onPressed: () => Share.share('я в шкафу прячусь'), // Функция нажатия на кнопку поделиться
                         child: const Icon( // Иконка поделиться
                           Icons.share
                         ),
