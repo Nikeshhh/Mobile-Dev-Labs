@@ -31,13 +31,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counterLikes = 0;
   // Ссылка на место на карте
   String mapsUrl = 'https://yandex.ru/maps/35/krasnodar/?ll=38.924802%2C45.051164&mode=poi&poi%5Bpoint%5D=38.923352%2C45.050769&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D174355238585&z=17.25';
-
+  String phoneNumber = '88005553535';
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counterLikes++;
     });
   }
 
@@ -69,13 +69,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 ElevatedButton( // Кнопка лайка
-                  onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: _incrementCounter, // Функция нажатия на кнопку
                   child: const Icon( // Иконка сердечка
-                    Icons.favorite
+                    Icons.favorite,
+                    color: Colors.green,
                   ),
                 ),
-                const Text( // Количество лайков
-                  'Likes'
+                Text( // Количество лайков
+                  '$_counterLikes'
                 )
               ],
             ),
@@ -89,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             backgroundColor: Colors.white,
                             foregroundColor: Colors.white,
                           ),
-                          onPressed: () => launch('tel://88005553535'), // Функция нажатия на кнопку звонка
+                          onPressed: () => launch(phoneNumber), // Функция нажатия на кнопку звонка
                           child: const Icon( // Иконка звонка
                             Icons.call,
                             color: Colors.green,
