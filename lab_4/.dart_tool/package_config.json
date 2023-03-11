@@ -62,6 +62,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///A:/Flutter/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "js",
       "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
@@ -96,6 +102,12 @@
       "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "sky_engine",
@@ -140,6 +152,54 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.1.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.0.25",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.0.16",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///C:/Users/Nikesh/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -152,7 +212,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-03-09T08:31:43.713241Z",
+  "generated": "2023-03-11T15:13:12.502303Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }

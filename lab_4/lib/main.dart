@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column( // Кнопка позвонить
                     children: [
                       ElevatedButton( // Кнопка позвонить
-                          onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
+                          onPressed: () => launch('tel://88005553535'), // Функция нажатия на кнопку звонка
                           child: const Icon( // Иконка звонка
                             Icons.call
                           )
