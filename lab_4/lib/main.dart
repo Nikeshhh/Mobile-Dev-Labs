@@ -35,7 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
   // Ссылка на место на карте
   String mapsUrl = 'https://yandex.ru/maps/35/krasnodar/?ll=38.924802%2C45.051164&mode=poi&poi%5Bpoint%5D=38.923352%2C45.050769&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D174355238585&z=17.25';
 
-
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -72,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton( // Кнопка лайка
                   onPressed: _incrementCounter, // Функция нажатия на кнопку TODO: Заглушка на кнопке
                   child: const Icon( // Иконка сердечка
-                    Icons.label
+                    Icons.favorite
                   ),
                 ),
                 const Text( // Количество лайков
@@ -86,13 +85,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column( // Кнопка позвонить
                     children: [
                       ElevatedButton( // Кнопка позвонить
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.white,
+                          ),
                           onPressed: () => launch('tel://88005553535'), // Функция нажатия на кнопку звонка
                           child: const Icon( // Иконка звонка
-                            Icons.call
+                            Icons.call,
+                            color: Colors.green,
                           )
                       ),
                       const Text( // Надпись позвонить
-                        'ПОЗВОНИТЬ'
+                        'ПОЗВОНИТЬ',
+                        style: TextStyle(
+                          color: Colors.green
+                        ),
                       )
                     ],
                   ),
@@ -102,12 +109,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       ElevatedButton(
                           onPressed: () => launch(mapsUrl), // Функция нажатия на кнопку маршрут TODO: Сделать маршрут а не ссылку на место
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.white,
+                          ),
                           child: const Icon( // Иконка навигатора
-                            Icons.navigation
+                            Icons.navigation,
+                            color: Colors.green,
                           )
                       ),
                       const Text( // Надпись маршрут
-                        'МАРШРУТ'
+                        'МАРШРУТ',
+                        style: TextStyle(
+                          color: Colors.green
+                        ),
                       ),
                     ],
                   ),
@@ -116,13 +131,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column( // Кнопка поделиться
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: () => Share.share('я в шкафу прячусь'), // Функция нажатия на кнопку поделиться
                         child: const Icon( // Иконка поделиться
-                          Icons.share
+                          Icons.share,
+                          color: Colors.green,
                         ),
                       ),
                       const Text( // Надпись поделиться
-                        'ПОДЕЛИТЬСЯ'
+                        'ПОДЕЛИТЬСЯ',
+                        style: TextStyle(
+                          color: Colors.green
+                        ),
                       )
                     ],
                   ),
