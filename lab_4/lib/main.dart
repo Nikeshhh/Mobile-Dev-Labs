@@ -57,8 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Image.asset('assets/images/sample_image.jpg'),
               ),
             Row( // Строка с основной информацией
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Expanded(
+                const SizedBox(
+                  width: 310,
                   child: ListTile( // Лист тайл с названием общаги и адресом
                     title: Text(
                         'sample title'
