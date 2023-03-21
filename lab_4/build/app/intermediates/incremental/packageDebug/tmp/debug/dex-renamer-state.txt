@@ -1,0 +1,4 @@
+#Fri Mar 17 19:46:29 MSK 2023
+base.0=A\:\\Diachenko\\lab_4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
