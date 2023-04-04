@@ -19,7 +19,9 @@ class MainScreen extends StatelessWidget{
       appBar: AppBar(title: const Text('Главное окно'),),
       body: Center(
         child: ElevatedButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pushNamed(context, '/second');
+          },
           child: const Text('asdf'),
         ),
       ),
@@ -48,6 +50,6 @@ class SecondScreen extends StatelessWidget{
           ],
         ),
       ),
-    )
+    );
   }
 }
