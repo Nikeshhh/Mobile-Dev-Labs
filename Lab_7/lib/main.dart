@@ -41,11 +41,15 @@ class SecondScreen extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pop(context);
+              },
               child: const Text('Да'),
             ),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pop(context);
+              },
               child: const Text('Нет'),
             ),
           ],
