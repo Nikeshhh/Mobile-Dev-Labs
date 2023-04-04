@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text('Главное окно'),),
+      appBar: AppBar(title: const Text('Возвращение значения'),),
       body: Center(
         child: ElevatedButton(
           onPressed: (){
@@ -35,7 +35,7 @@ class SecondScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text('Второе окно'),),
+      appBar: AppBar(title: const Text('Выберите любой вариант'),),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, // Выравнивание кнопок по центру
