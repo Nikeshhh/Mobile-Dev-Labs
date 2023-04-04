@@ -22,7 +22,7 @@ class MainScreen extends StatelessWidget{
           onPressed: (){
             Navigator.pushNamed(context, '/second');
           },
-          child: const Text('Открыть второе окно'),
+          child: const Text('Приступить к выбору'),
         ),
       ),
     );
