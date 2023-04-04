@@ -22,7 +22,7 @@ class MainScreen extends StatelessWidget{
           onPressed: (){
             Navigator.pushNamed(context, '/second');
           },
-          child: const Text('asdf'),
+          child: const Text('Открыть второе окно'),
         ),
       ),
     );
@@ -38,6 +38,7 @@ class SecondScreen extends StatelessWidget{
       appBar: AppBar(title: const Text('Второе окно'),),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: (){},
