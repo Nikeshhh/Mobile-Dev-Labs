@@ -5,7 +5,7 @@ void main() {
     initialRoute: '/',
     routes: {
       '/': (BuildContext context) => const MainScreen(),
-
+      '/second': (BuildContext context) => const SecondScreen(),
     },
   ));
 }
