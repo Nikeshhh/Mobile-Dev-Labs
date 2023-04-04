@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget{
       body: Center(
         child: ElevatedButton(
           onPressed: (){
-            Navigator.pushNamed(context, '/second');
+            Navigator.pushNamed(context, '/second'); // Переход на следующее окно
           },
           child: const Text('Приступить к выбору'),
         ),
@@ -38,29 +38,29 @@ class SecondScreen extends StatelessWidget{
       appBar: AppBar(title: const Text('Второе окно'),),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, // Выравнивание кнопок по центру
           children: [
             ElevatedButton(
               onPressed: (){
-                ScaffoldMessenger.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar( // Вывод ответа
                     const SnackBar(
                         content: Text('Да!'),
                         duration: Duration(seconds: 2),
                     ),
                 );
-                Navigator.pop(context);
+                Navigator.pop(context); // Возвращение на предыдущее окно
               },
               child: const Text('Да'),
             ),
             ElevatedButton(
               onPressed: (){
-                ScaffoldMessenger.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar( // Вывод ответа
                   const SnackBar(
                     content: Text('Нет!'),
                     duration: Duration(seconds: 2),
                   ),
                 );
-                Navigator.pop(context);
+                Navigator.pop(context); // Возвращение на предыдущее окно
               },
               child: const Text('Нет'),
             ),
