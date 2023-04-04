@@ -27,4 +27,27 @@ class MainScreen extends StatelessWidget{
   }
 }
 
+class SecondScreen extends StatelessWidget{
+  const SecondScreen({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(title: const Text('Второе окно'),),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: (){},
+              child: const Text('Да'),
+            ),
+            ElevatedButton(
+              onPressed: (){},
+              child: const Text('Нет'),
+            ),
+          ],
+        ),
+      ),
+    )
+  }
+}
