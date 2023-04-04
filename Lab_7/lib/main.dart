@@ -42,12 +42,24 @@ class SecondScreen extends StatelessWidget{
           children: [
             ElevatedButton(
               onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Да!'),
+                        duration: Duration(seconds: 2),
+                    ),
+                );
                 Navigator.pop(context);
               },
               child: const Text('Да'),
             ),
             ElevatedButton(
               onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Нет!'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
                 Navigator.pop(context);
               },
               child: const Text('Нет'),
