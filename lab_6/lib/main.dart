@@ -20,6 +20,7 @@ class MyFormState extends State {
   double _width = 0;
   double _height = 0;
   double _result = 0;
+  String _output = 'Введите данные';
 
   bool _myValidator(val){
     try{
@@ -35,6 +36,12 @@ class MyFormState extends State {
     if (_formKey.currentState!.validate()){
       setState(() {
         _result = _width * _height;
+        _output = 'S = $_width * $_height = $_result';
+      });
+    }
+    else{
+      setState(() {
+        _output = 'Введите данные';
       });
     }
 
@@ -90,7 +97,7 @@ class MyFormState extends State {
               onPressed: _calculate,
               child: const Text('Вычислить'),
             ),
-            Text('$_result'),
+            Text(_output),
           ],
         ),
       ),
