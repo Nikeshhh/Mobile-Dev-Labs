@@ -19,15 +19,25 @@ class MyFormState extends State {
   final _formKey = GlobalKey<FormState>();
   double _width = 0;
   double _height = 0;
+  double _result = 0;
 
   bool _myValidator(val){
     try{
       double.parse(val);
-      return true;
-    }
-    on Exception {
       return false;
     }
+    on Exception {
+      return true;
+    }
+  }
+
+  void _calculate(){
+    if (_formKey.currentState!.validate()){
+      setState(() {
+        _result = _width * _height;
+      });
+    }
+
   }
 
   @override
@@ -74,7 +84,13 @@ class MyFormState extends State {
                   }),
                 )
               ],
-            )
+            ),
+            const Divider(height: 30,),
+            ElevatedButton(
+              onPressed: _calculate,
+              child: const Text('Вычислить'),
+            ),
+            Text('$_result'),
           ],
         ),
       ),
