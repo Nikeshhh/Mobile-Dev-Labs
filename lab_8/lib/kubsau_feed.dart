@@ -14,6 +14,16 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+Future<List<SingleNew>> fetchPhotos(http.Client client) async {
+  final response = await client.get(Uri.parse('https://kubsau.ru/api/getNews.php?key=6df2f5d38d4e16b5a923a6d4873e2ee295d0ac90'));
+  return compute(parseNews, response.body);
+}
+
+List<SingleNew> parseNews(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<SingleNew>((json) => SingleNew.fromJson(json)).toList();
+}
+
 class SingleNew {
   final String activeFrom;
   final String title;
@@ -62,3 +72,35 @@ class NewsList extends StatelessWidget {
   }
 }
 
+class MyFeed extends StatelessWidget {
+  const MyFeed({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: FutureBuilder<List<SingleNew>>(
+          future: fetchPhotos(http.Client()),
+          builder: (context, snapshot) {
+            if (snapshot.hasError){
+              return const Center(
+                child: Text('Ошибка при выполнении запроса!'),
+              );
+            }
+            else if (snapshot.hasData){
+              return NewsList(news: snapshot.data!);
+            }
+            else{
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }
+      ),
+    );
+  }
+}
