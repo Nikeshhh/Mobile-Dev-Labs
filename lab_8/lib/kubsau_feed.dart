@@ -62,7 +62,7 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
       itemCount: news.length,
       itemBuilder: (context, index) {
         return Column(
@@ -70,10 +70,9 @@ class NewsList extends StatelessWidget {
             Image.network(news[index].previewPictureSrc),
             Text(news[index].activeFrom),
             Text(news[index].title),
-            Text(news[index].detailText)
+            Expanded(child: Text(news[index].detailText))
           ],
         );
-        // Image.network(photos[index].thumbnailUrl);
       },
     );
   }
