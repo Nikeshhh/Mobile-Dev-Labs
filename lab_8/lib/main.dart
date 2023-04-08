@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     const title = 'Фотогалерея';
+    const feed_title = 'Лента новостей КубГАУ';
 
     return MaterialApp(
       initialRoute: '/',
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (BuildContext context) => const MySelector(title: title),
         'photo_gallery': (BuildContext context) => const MyPhotoGallery(title: title),
-        'feed': (BuildContext context) => const MyFeed(title: title),
+        'feed': (BuildContext context) => const MyFeed(title: feed_title),
       },
     );
   }

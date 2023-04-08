@@ -34,13 +34,13 @@ List<SingleNew> parseNews(String responseBody) {
 class SingleNew {
   final String activeFrom;
   final String title;
-  final String detailText;
+  final String previewText;
   final String previewPictureSrc;
 
   const SingleNew({
     required this.activeFrom,
     required this.title,
-    required this.detailText,
+    required this.previewText,
     required this.previewPictureSrc,
   });
 
@@ -48,7 +48,7 @@ class SingleNew {
     return SingleNew(
       activeFrom: json['ACTIVE_FROM'] as String,
       title: json['TITLE'] as String,
-      detailText: json['DETAIL_TEXT'] as String,
+      previewText: json['PREVIEW_TEXT'] as String,
       previewPictureSrc: json['PREVIEW_PICTURE_SRC'] as String,
     );
   }
@@ -65,13 +65,22 @@ class NewsList extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
       itemCount: news.length,
       itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Image.network(news[index].previewPictureSrc),
-            Text(news[index].activeFrom),
-            Text(news[index].title),
-            Expanded(child: Text(news[index].detailText))
-          ],
+        return SizedBox(
+          height: double.infinity,
+          child: Card(
+            child: Column(
+              children: [
+                Image.network(news[index].previewPictureSrc),
+                ListTile(
+                  title: Text(news[index].title),
+                  subtitle: Text(news[index].activeFrom),
+                ),
+                ListTile(
+                  title: Text(Bidi.stripHtmlIfNeeded(news[index].previewText)),
+                ),
+              ],
+            ),
+          )
         );
       },
     );
