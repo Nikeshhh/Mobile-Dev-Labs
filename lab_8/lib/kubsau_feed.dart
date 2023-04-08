@@ -21,15 +21,6 @@ import 'dart:io';
 //   }
 // }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context){
-    return super.createHttpClient(context)
-        ..badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-  }
-}
-
 Future<List<SingleNew>> fetchPhotos(http.Client client) async {
   final response = await client.get(Uri.parse('https://kubsau.ru/api/getNews.php?key=6df2f5d38d4e16b5a923a6d4873e2ee295d0ac90'));
   return compute(parseNews, response.body);
@@ -55,10 +46,10 @@ class SingleNew {
 
   factory SingleNew.fromJson(Map<String, dynamic> json){
     return SingleNew(
-      activeFrom: json['activeFrom'] as String,
-      title: json['title'] as String,
-      detailText: json['detailText'] as String,
-      previewPictureSrc: json['previewPictureSrc'] as String,
+      activeFrom: json['ACTIVE_FROM'] as String,
+      title: json['TITLE'] as String,
+      detailText: json['DETAIL_TEXT'] as String,
+      previewPictureSrc: json['PREVIEW_PICTURE_SRC'] as String,
     );
   }
 }
