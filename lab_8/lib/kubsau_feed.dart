@@ -14,21 +14,21 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-class SingleView {
+class SingleNew {
   final String activeFrom;
   final String title;
   final String detailText;
   final String previewPictureSrc;
 
-  const SingleView({
+  const SingleNew({
     required this.activeFrom,
     required this.title,
     required this.detailText,
     required this.previewPictureSrc,
   });
 
-  factory SingleView.fromJson(Map<String, dynamic> json){
-    return SingleView(
+  factory SingleNew.fromJson(Map<String, dynamic> json){
+    return SingleNew(
       activeFrom: json['activeFrom'] as String,
       title: json['title'] as String,
       detailText: json['detailText'] as String,
@@ -36,3 +36,29 @@ class SingleView {
     );
   }
 }
+
+class NewsList extends StatelessWidget {
+  const NewsList({Key? key, required this.news}) : super(key: key);
+
+  final List<SingleNew> news;
+
+  @override
+  Widget build(BuildContext context){
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemCount: news.length,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            Image.network(news[index].previewPictureSrc),
+            Text(news[index].activeFrom),
+            Text(news[index].title),
+            Text(news[index].detailText)
+          ],
+        );
+        // Image.network(photos[index].thumbnailUrl);
+      },
+    );
+  }
+}
+
