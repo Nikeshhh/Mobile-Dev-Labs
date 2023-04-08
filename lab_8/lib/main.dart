@@ -3,6 +3,22 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    const title = 'Фотогалерея';
+
+    return const MaterialApp(
+      title: title,
+      home: MyHomePage(title: title),
+    );
+  }
+}
+
 Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response = await client.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
   return compute(parsePhotos, response.body);
@@ -52,6 +68,39 @@ class PhotosList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Image.network(photos[index].thumbnailUrl);
     },
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: FutureBuilder<List<Photo>>(
+        future: fetchPhotos(http.Client()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError){
+            return const Center(
+              child: Text('Ошибка при выполнении запроса!'),
+            );
+          }
+          else if (snapshot.hasData){
+            return PhotosList(photos: snapshot.data!);
+          }
+          else{
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }
+      ),
     );
   }
 }
