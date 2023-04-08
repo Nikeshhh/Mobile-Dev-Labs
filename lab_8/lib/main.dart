@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'photo_gallery.dart';
+import 'kubsau_feed.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (BuildContext context) => const MySelector(title: title),
         'photo_gallery': (BuildContext context) => const MyPhotoGallery(title: title),
+        'feed': (BuildContext context) => const MyFeed(title: title),
       },
     );
   }
@@ -43,6 +45,12 @@ class MySelector extends StatelessWidget {
                 Navigator.pushNamed(context, 'photo_gallery');
               },
               child: const Text('Фотогалерея'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, 'feed');
+              },
+              child: const Text('Новости КубГАУ'),
             )
           ],
         ),

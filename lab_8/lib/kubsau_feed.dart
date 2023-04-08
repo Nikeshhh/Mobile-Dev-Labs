@@ -5,6 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
 
+// void main() => runApp(const MyApp());
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context){
+//     const title = 'Новости КУБГАУ';
+//
+//     return const MaterialApp(
+//       title: title,
+//       home: MyFeed(title: title),
+//     );
+//   }
+// }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context){
@@ -87,8 +103,8 @@ class MyFeed extends StatelessWidget {
           future: fetchPhotos(http.Client()),
           builder: (context, snapshot) {
             if (snapshot.hasError){
-              return const Center(
-                child: Text('Ошибка при выполнении запроса!'),
+              return Center(
+                child: Text(snapshot.error.toString()),
               );
             }
             else if (snapshot.hasData){
