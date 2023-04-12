@@ -5,7 +5,6 @@ import 'dart:io';
 
 
 void main () {
-
   runApp(const MaterialApp(
     home: MyHomePage(),
   ));
@@ -40,14 +39,15 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text (myMachine.makeCoffee(myCoffee)),
+                      content: Text(myMachine.makeCoffee(myCoffee)),
                   )
                 );
               },
               child: const Text('Да'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () { // TODO: приложение должно выключаться
+              },
               child: const Text('Нет'),
             ),
           ],
