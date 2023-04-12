@@ -64,13 +64,13 @@ class Machine {
     _cash -= coffee.getCashRequired();
   }
 
-  void makeCoffee (Coffee coffee) {
+  String makeCoffee (Coffee coffee) {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.getName();
-      print('Кофе готово - $coffeeName');
+      return ('Кофе готово - $coffeeName');
     }
     else{
-      print('Недостаточно ингредиентов');
+      return ('Недостаточно ингредиентов');
     }
   }
 }
