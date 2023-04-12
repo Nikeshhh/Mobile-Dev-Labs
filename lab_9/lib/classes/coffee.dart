@@ -6,6 +6,14 @@ class Coffee {
   late final int _waterRequired;
   late final int _cashRequired;
 
+  Coffee (String name, int beansRequired, int milkRequired, int waterRequired, int cashRequired) {
+    setName(name);
+    setBeansRequired(beansRequired);
+    setMilkRequired(milkRequired);
+    setWaterRequired(waterRequired);
+    setCashRequired(cashRequired);
+  }
+
   String getName () {
     return _name;
   }
