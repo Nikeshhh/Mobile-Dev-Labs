@@ -1,3 +1,4 @@
+import 'coffee.dart';
 
 class Machine {
   late final int _coffeeBeans;
@@ -42,5 +43,21 @@ class Machine {
 
   void setCash (int value) {
     _cash = value;
+  }
+
+  bool isAvailableResources (Coffee coffee) {
+    if (coffee.getBeansRequired() < getCoffeeBeans() &&
+        coffee.getWaterRequired() < getWater() &&
+        coffee.getMilkRequired() < getMilk() &&
+        coffee.getCashRequired() < getCash()){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  void _subtractResources (Coffee coffee) {
+    
   }
 }
