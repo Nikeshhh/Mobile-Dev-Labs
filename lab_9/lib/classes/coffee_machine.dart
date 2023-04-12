@@ -45,7 +45,7 @@ class Machine {
     _cash = value;
   }
 
-  bool isAvailableResources (Coffee coffee) {
+  bool _isAvailableResources (Coffee coffee) {
     if (coffee.getBeansRequired() < getCoffeeBeans() &&
         coffee.getWaterRequired() < getWater() &&
         coffee.getMilkRequired() < getMilk() &&
@@ -58,6 +58,19 @@ class Machine {
   }
 
   void _subtractResources (Coffee coffee) {
-    
+    _coffeeBeans -= coffee.getBeansRequired();
+    _milk -= coffee.getMilkRequired();
+    _water -= coffee.getWaterRequired();
+    _cash -= coffee.getCashRequired();
+  }
+
+  void makeCoffee (Coffee coffee) {
+    if (_isAvailableResources(coffee)){
+      String coffeeName = coffee.getName();
+      print('Кофе готово $coffeeName');
+    }
+    else{
+      print('Недостаточно ингридиентов');
+    }
   }
 }
