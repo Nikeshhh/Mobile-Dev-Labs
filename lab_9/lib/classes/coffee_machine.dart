@@ -5,6 +5,13 @@ class Machine {
   late final int _water;
   late final int _cash;
 
+  Machine ({
+    required setCoffeeBeans,
+    required setMilk,
+    required setWater,
+    required setCash,
+});
+
   int getCoffeeBeans () {
     return _coffeeBeans;
 }
