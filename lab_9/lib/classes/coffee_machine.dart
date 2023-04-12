@@ -67,7 +67,7 @@ class Machine {
   void makeCoffee (Coffee coffee) {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.getName();
-      print('Кофе готово $coffeeName');
+      print('Кофе готово - $coffeeName');
     }
     else{
       print('Недостаточно ингредиентов');
