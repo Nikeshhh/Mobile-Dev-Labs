@@ -6,12 +6,12 @@ class Machine {
   late final int _water;
   late final int _cash;
 
-  Machine ({
-    required setCoffeeBeans,
-    required setMilk,
-    required setWater,
-    required setCash,
-});
+  Machine (int coffeeBeans, int milk, int water, int cash) {
+    setCoffeeBeans(coffeeBeans);
+    setMilk(milk);
+    setWater(water);
+    setCash(cash);
+  }
 
   int getCoffeeBeans () {
     return _coffeeBeans;
@@ -70,7 +70,7 @@ class Machine {
       print('Кофе готово $coffeeName');
     }
     else{
-      print('Недостаточно ингридиентов');
+      print('Недостаточно ингредиентов');
     }
   }
 }
