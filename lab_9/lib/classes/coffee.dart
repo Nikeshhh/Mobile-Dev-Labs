@@ -1,5 +1,6 @@
+import 'package:lab_9/classes/abstracts.dart';
 
-class Coffee {
+class Coffee extends ICoffee {
   late final String _name;
   late final int _beansRequired;
   late final int _milkRequired;
