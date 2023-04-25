@@ -19,7 +19,7 @@ class MyHomePage extends StatelessWidget {
         'Эспрессо',
         50,
         0,
-        100,
+        50,
         0
     );
     Machine myMachine = Machine(
