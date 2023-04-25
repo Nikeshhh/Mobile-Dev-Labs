@@ -8,6 +8,13 @@ class Resources {
   late final int _water;
   late final int _cash;
 
+  Resources (int coffee, int milk, int water, int cash){
+    setCoffeeBeans(coffee);
+    setMilk(milk);
+    setWater(water);
+    setCash(cash);
+  }
+
   int getCoffeeBeans () {
     return _coffeeBeans;
   }
