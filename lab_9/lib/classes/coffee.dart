@@ -1,11 +1,11 @@
 import 'package:lab_9/classes/abstracts.dart';
 
 class Coffee extends ICoffee {
-  late final String _name;
-  late final int _beansRequired;
-  late final int _milkRequired;
-  late final int _waterRequired;
-  late final int _cashRequired;
+  String _name = '';
+  int _beansRequired = 0;
+  int _milkRequired = 0;
+  int _waterRequired = 0;
+  int _cashRequired = 0;
 
   Coffee (String name, int beansRequired, int milkRequired, int waterRequired, int cashRequired) {
     setName(name);
