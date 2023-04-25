@@ -8,7 +8,7 @@ enum CoffeeTypes {
   latte
 }
 
-Coffee getCoffeType(CoffeeTypes type){
+Coffee getCoffeeType(CoffeeTypes type){
   switch(type){
     case CoffeeTypes.espresso: return espresso;
     case CoffeeTypes.americano: return americano;

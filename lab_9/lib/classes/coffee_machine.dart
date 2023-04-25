@@ -1,12 +1,10 @@
-import 'package:flutter/rendering.dart';
-
 import 'coffee.dart';
 
 class Resources {
-  late final int _coffeeBeans;
-  late final int _milk;
-  late final int _water;
-  late final int _cash;
+  int _coffeeBeans = 0;
+  int _milk = 0;
+  int _water = 0;
+  int _cash = 0;
 
   Resources (int coffee, int milk, int water, int cash){
     setCoffeeBeans(coffee);
@@ -88,6 +86,7 @@ class Machine {
   String makeCoffee (Coffee coffee) {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.getName();
+      _subtractResources(coffee);
       return ('Кофе готово - $coffeeName');
     }
     else{

@@ -23,12 +23,12 @@ class MyHomePage extends StatelessWidget {
         0
     );
     Machine myMachine = Machine(
-      Resources(
-        500, // Количество кофе (гр)
-        500, // Количество молока (мл)
-        90, // Количетво воды (мл)
-        500 // Количество денег (?)
-      )
+        Resources(
+            500, // Количество кофе (гр)
+            500, // Количество молока (мл)
+            90, // Количетво воды (мл)
+            500 // Количество денег (?)
+        )
     );
     return Scaffold(
       appBar: AppBar(title: const Text('Кофемашина'),),
