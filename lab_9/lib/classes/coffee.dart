@@ -19,18 +19,22 @@ class Coffee extends ICoffee {
     return _name;
   }
 
+  @override
   int getBeansRequired () {
     return _beansRequired;
   }
 
+  @override
   int getMilkRequired () {
     return _milkRequired;
   }
 
+  @override
   int getWaterRequired () {
     return _waterRequired;
   }
 
+  @override
   int getCashRequired () {
     return _cashRequired;
   }

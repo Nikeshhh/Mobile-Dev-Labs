@@ -1,21 +1,16 @@
+import 'package:flutter/rendering.dart';
+
 import 'coffee.dart';
 
-class Machine {
+class Resources {
   late final int _coffeeBeans;
   late final int _milk;
   late final int _water;
   late final int _cash;
 
-  Machine (int coffeeBeans, int milk, int water, int cash) {
-    setCoffeeBeans(coffeeBeans);
-    setMilk(milk);
-    setWater(water);
-    setCash(cash);
-  }
-
   int getCoffeeBeans () {
     return _coffeeBeans;
-}
+  }
 
   int getMilk () {
     return _milk;
@@ -45,11 +40,30 @@ class Machine {
     _cash = value;
   }
 
+}
+
+class Machine {
+  late final Resources _resources;
+
+  Machine (Resources resources) {
+    setResources(resources);
+  }
+
+  void setResources(Resources resources){
+    _resources = resources;
+  }
+
+  Resources getResources(){
+    return _resources;
+  }
+
+
+
   bool _isAvailableResources (Coffee coffee) {
-    if (coffee.getBeansRequired() < getCoffeeBeans() &&
-        coffee.getWaterRequired() < getWater() &&
-        coffee.getMilkRequired() < getMilk() &&
-        coffee.getCashRequired() < getCash()){
+    if (coffee.getBeansRequired() < _resources.getCoffeeBeans() &&
+        coffee.getWaterRequired() < _resources.getWater() &&
+        coffee.getMilkRequired() < _resources.getMilk() &&
+        coffee.getCashRequired() < _resources.getCash()){
       return true;
     }
     else {
@@ -58,10 +72,10 @@ class Machine {
   }
 
   void _subtractResources (Coffee coffee) {
-    _coffeeBeans -= coffee.getBeansRequired();
-    _milk -= coffee.getMilkRequired();
-    _water -= coffee.getWaterRequired();
-    _cash -= coffee.getCashRequired();
+    _resources.setCoffeeBeans(_resources.getCoffeeBeans() - coffee.getBeansRequired());
+    _resources.setWater(_resources.getWater() - coffee.getWaterRequired());
+    _resources.setMilk(_resources.getMilk() - coffee.getMilkRequired());
+    _resources.setCash(_resources.getCash() - coffee.getCashRequired());
   }
 
   String makeCoffee (Coffee coffee) {
