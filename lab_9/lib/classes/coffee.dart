@@ -8,54 +8,54 @@ class Coffee extends ICoffee {
   int _cashRequired = 0;
 
   Coffee (String name, int beansRequired, int milkRequired, int waterRequired, int cashRequired) {
-    setName(name);
-    setBeansRequired(beansRequired);
-    setMilkRequired(milkRequired);
-    setWaterRequired(waterRequired);
-    setCashRequired(cashRequired);
+    this.name = name;
+    this.beansRequired = beansRequired;
+    this.milkRequired = milkRequired;
+    this.waterRequired = waterRequired;
+    this.cashRequired = cashRequired;
   }
 
-  String getName () {
+  String get name {
     return _name;
   }
 
   @override
-  int getBeansRequired () {
+  int get beansRequired {
     return _beansRequired;
   }
 
   @override
-  int getMilkRequired () {
+  int get milkRequired {
     return _milkRequired;
   }
 
   @override
-  int getWaterRequired () {
+  int get waterRequired {
     return _waterRequired;
   }
 
   @override
-  int getCashRequired () {
+  int get cashRequired {
     return _cashRequired;
   }
 
-  void setName (String value) {
+  set name (String value) {
     _name = value;
   }
 
-  void setBeansRequired (int value) {
+  set beansRequired (int value) {
     _beansRequired = value;
   }
 
-  void setMilkRequired (int value) {
+  set milkRequired (int value) {
     _milkRequired = value;
   }
 
-  void setWaterRequired (int value) {
+  set waterRequired (int value) {
     _waterRequired = value;
   }
 
-  void setCashRequired (int value) {
+  set cashRequired (int value) {
     _cashRequired = value;
   }
 

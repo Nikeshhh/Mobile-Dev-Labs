@@ -7,41 +7,41 @@ class Resources {
   int _cash = 0;
 
   Resources (int coffee, int milk, int water, int cash){
-    setCoffeeBeans(coffee);
-    setMilk(milk);
-    setWater(water);
-    setCash(cash);
+    this.coffeeBeans = coffee;
+    this.milk = milk;
+    this.water = water;
+    this.cash = cash;
   }
 
-  int getCoffeeBeans () {
+  int get coffeeBeans {
     return _coffeeBeans;
   }
 
-  int getMilk () {
+  int get milk {
     return _milk;
   }
 
-  int getWater () {
+  int get water {
     return _water;
   }
 
-  int getCash () {
+  int get cash {
     return _cash;
   }
 
-  void setCoffeeBeans (int value) {
+  set coffeeBeans (int value) {
     _coffeeBeans = value;
   }
 
-  void setMilk (int value) {
+  set milk (int value) {
     _milk = value;
   }
 
-  void setWater (int value) {
+  set water (int value) {
     _water = value;
   }
 
-  void setCash (int value) {
+  set cash (int value) {
     _cash = value;
   }
 
@@ -51,10 +51,10 @@ class Machine {
   late final Resources _resources;
 
   Machine (Resources resources) {
-    setResources(resources);
+    resources = resources;
   }
 
-  void setResources(Resources resources){
+  set resources(Resources resources){
     _resources = resources;
   }
 
@@ -65,10 +65,10 @@ class Machine {
 
 
   bool _isAvailableResources (Coffee coffee) {
-    if (coffee.getBeansRequired() < _resources.getCoffeeBeans() &&
-        coffee.getWaterRequired() < _resources.getWater() &&
-        coffee.getMilkRequired() < _resources.getMilk() &&
-        coffee.getCashRequired() < _resources.getCash()){
+    if (coffee.beansRequired < _resources.coffeeBeans &&
+        coffee.waterRequired < _resources.water &&
+        coffee.milkRequired < _resources.milk &&
+        coffee.cashRequired < _resources.cash) {
       return true;
     }
     else {
@@ -77,15 +77,15 @@ class Machine {
   }
 
   void _subtractResources (Coffee coffee) {
-    _resources.setCoffeeBeans(_resources.getCoffeeBeans() - coffee.getBeansRequired());
-    _resources.setWater(_resources.getWater() - coffee.getWaterRequired());
-    _resources.setMilk(_resources.getMilk() - coffee.getMilkRequired());
-    _resources.setCash(_resources.getCash() - coffee.getCashRequired());
+    _resources.coffeeBeans = (_resources.coffeeBeans - coffee.beansRequired);
+    _resources.water = (_resources.water - coffee.waterRequired);
+    _resources.milk = (_resources.milk - coffee.milkRequired);
+    _resources.cash = (_resources.cash - coffee.cashRequired);
   }
 
   String makeCoffee (Coffee coffee) {
     if (_isAvailableResources(coffee)){
-      String coffeeName = coffee.getName();
+      String coffeeName = coffee.name;
       _subtractResources(coffee);
       return ('Кофе готово - $coffeeName');
     }

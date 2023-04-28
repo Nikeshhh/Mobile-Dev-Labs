@@ -1,8 +1,8 @@
 
 
 abstract class ICoffee {
-  int getBeansRequired();
-  int getMilkRequired();
-  int getWaterRequired();
-  int getCashRequired();
+  get beansRequired;
+  get milkRequired;
+  get waterRequired;
+  get cashRequired;
 }
