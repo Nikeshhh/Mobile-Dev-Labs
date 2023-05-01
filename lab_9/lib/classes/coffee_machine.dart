@@ -48,17 +48,17 @@ class Resources {
 }
 
 class Machine {
-  late final Resources _resources;
+  Resources _resources = Resources(0, 0, 0, 0);
 
   Machine (Resources resources) {
-    resources = resources;
+    _resources = resources;
   }
 
   set resources(Resources resources) {
     _resources = resources;
   }
 
-  Resources get getResources {
+  Resources get resources {
     return _resources;
   }
 

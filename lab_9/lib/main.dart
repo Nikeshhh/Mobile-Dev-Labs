@@ -3,39 +3,32 @@ import 'classes/coffee_machine.dart';
 import 'classes/coffee.dart';
 import 'dart:io';
 
-Coffee myCoffee = Coffee(
-    'Эспрессо',
-    50,
-    0,
-    50,
-    0
-);
-Machine myMachine = Machine(
-    Resources(
-        500, // Количество кофе (гр)
-        500, // Количество молока (мл)
-        290, // Количеcтво воды (мл)
-        500 // Количество денег (?)
-    )
-);
+Coffee myCoffee = Coffee('Эспрессо', 50, 0, 50, 0);
+Machine myMachine = Machine(Resources(
+    500, // Количество кофе (гр)
+    500, // Количество молока (мл)
+    290, // Количеcтво воды (мл)
+    500 // Количество денег (?)
+    ));
 
-void main () {
+void main() {
   runApp(MaterialApp(
     routes: {
-      '/': (BuildContext context) => const MyHomePage(),
+      '/': (BuildContext context) => MyHomePage(),
       'fillResources': (BuildContext context) => FillResourcesPage(),
     },
   ));
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage ({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Кофемашина'),),
+      appBar: AppBar(
+        title: const Text('Кофемашина'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,17 +36,14 @@ class MyHomePage extends StatelessWidget {
             const Text('Хотите выпить кофе?'),
             ElevatedButton(
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(myMachine.makeCoffee(myCoffee)),
-                  )
-                );
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(myMachine.makeCoffee(myCoffee)),
+                ));
               },
               child: const Text('Да'),
             ),
             ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               child: const Text('Нет'),
             ),
             ElevatedButton(
@@ -76,8 +66,37 @@ class FillResourcesPage extends StatefulWidget {
   State<StatefulWidget> createState() => FillResourcesPageState();
 }
 
-
 class FillResourcesPageState extends State {
+  final _formKey = GlobalKey<FormState>();
+
+  bool _myValidator(val) {
+    // Валидатор
+    try {
+      double.parse(val);
+      return false;
+    } on Exception {
+      return true;
+    }
+  }
+
+  void _updateResourceView(Machine machine) {
+    coffeeAmount = machine.resources.coffeeBeans;
+    milkAmount = machine.resources.milk;
+    waterAmount = machine.resources.water;
+    cashAmount = machine.resources.cash;
+  }
+
+  void _fillResources() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _updateResourceView(myMachine);
+      });
+    }
+  }
+
+  FillResourcesPageState() {
+    _updateResourceView(myMachine);
+  }
 
   int coffeeAmount = 0;
   int milkAmount = 0;
@@ -85,25 +104,130 @@ class FillResourcesPageState extends State {
   int cashAmount = 0;
 
   @override
-  Widget build(BuildContext context){
-    coffeeAmount = myMachine.res
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text('Resources:'),
-          Text('Beans: $coffeeAmount'),
-          Text('Milk: $milkAmount'),
-          Text('Water: $waterAmount'),
-          Text('Cash: $cashAmount'),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Назад'),
-          )
-        ],
-      ),
-    );
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Кофемашина'),
+        ),
+        body: Container(
+            padding: const EdgeInsets.all(20),
+            child: ListView(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Resources:'),
+                    Text('Beans: $coffeeAmount'),
+                    Text('Milk: $milkAmount'),
+                    Text('Water: $waterAmount'),
+                    Text('Cash: $cashAmount'),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                child: const Text('Кофе:'),
+                              ),
+                              Expanded(
+                                child: TextFormField(validator: (value) {
+                                  if (value!.isEmpty ||
+                                      _myValidator(value) ||
+                                      int.parse(value) <= 0) {
+                                    return 'Ошибка ввода';
+                                  } else {
+                                    myMachine.resources.coffeeBeans =
+                                        int.parse(value);
+                                  }
+                                }),
+                              )
+                            ],
+                          ),
+                          const Divider(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                child: const Text('Молоко:'),
+                              ),
+                              Expanded(
+                                child: TextFormField(validator: (value) {
+                                  if (value!.isEmpty ||
+                                      _myValidator(value) ||
+                                      int.parse(value) <= 0) {
+                                    return 'Ошибка ввода';
+                                  } else {
+                                    myMachine.resources.milk = int.parse(value);
+                                  }
+                                }),
+                              )
+                            ],
+                          ),
+                          const Divider(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                child: const Text('Вода:'),
+                              ),
+                              Expanded(
+                                child: TextFormField(validator: (value) {
+                                  if (value!.isEmpty ||
+                                      _myValidator(value) ||
+                                      int.parse(value) <= 0) {
+                                    return 'Ошибка ввода';
+                                  } else {
+                                    myMachine.resources.water =
+                                        int.parse(value);
+                                  }
+                                }),
+                              )
+                            ],
+                          ),
+                          const Divider(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                child: const Text('Деньги:'),
+                              ),
+                              Expanded(
+                                child: TextFormField(validator: (value) {
+                                  if (value!.isEmpty ||
+                                      _myValidator(value) ||
+                                      int.parse(value) <= 0) {
+                                    return 'Ошибка ввода';
+                                  } else {
+                                    myMachine.resources.cash = int.parse(value);
+                                  }
+                                }),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: _fillResources,
+                      child: const Text('Заполнить'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Назад'),
+                    )
+                  ],
+                ),
+              ],
+            )));
   }
 }
