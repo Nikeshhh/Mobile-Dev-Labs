@@ -54,11 +54,11 @@ class Machine {
     resources = resources;
   }
 
-  set resources(Resources resources){
+  set resources(Resources resources) {
     _resources = resources;
   }
 
-  Resources getResources(){
+  Resources get getResources {
     return _resources;
   }
 
