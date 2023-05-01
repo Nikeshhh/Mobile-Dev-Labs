@@ -67,6 +67,7 @@ class FillResourcesPage extends StatefulWidget {
 }
 
 class FillResourcesPageState extends State {
+  // Страницы для заполнения ресурсов
   final _formKey = GlobalKey<FormState>();
 
   bool _myValidator(val) {
@@ -80,6 +81,7 @@ class FillResourcesPageState extends State {
   }
 
   void _updateResourceView(Machine machine) {
+    // Функция для отображения текущих ресурсов на виджете
     coffeeAmount = machine.resources.coffeeBeans;
     milkAmount = machine.resources.milk;
     waterAmount = machine.resources.water;
@@ -87,6 +89,7 @@ class FillResourcesPageState extends State {
   }
 
   void _fillResources() {
+    // Функция для заполнения ресурсов кофемашины
     if (_formKey.currentState!.validate()) {
       setState(() {
         _updateResourceView(myMachine);
@@ -95,13 +98,16 @@ class FillResourcesPageState extends State {
   }
 
   FillResourcesPageState() {
+    // Конструктор по умолчанию
     _updateResourceView(myMachine);
   }
 
+  // Поля для отображения ресурсов
   int coffeeAmount = 0;
   int milkAmount = 0;
   int waterAmount = 0;
   int cashAmount = 0;
+  //
 
   @override
   Widget build(BuildContext context) {
@@ -114,19 +120,24 @@ class FillResourcesPageState extends State {
             child: ListView(
               children: [
                 Column(
+                  // Колонка с виджетами
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text('Resources:'),
+                    // Надписи со значениями ресурсов
                     Text('Beans: $coffeeAmount'),
                     Text('Milk: $milkAmount'),
                     Text('Water: $waterAmount'),
                     Text('Cash: $cashAmount'),
+                    //
                     Form(
+                      // Виджет формы
                       key: _formKey,
                       child: Column(
                         children: [
                           Row(
+                            // Поле для ввода кофе
                             children: [
                               Container(
                                 child: const Text('Кофе:'),
@@ -149,6 +160,7 @@ class FillResourcesPageState extends State {
                             height: 10,
                           ),
                           Row(
+                            // Поле для ввода молока
                             children: [
                               Container(
                                 child: const Text('Молоко:'),
@@ -170,6 +182,7 @@ class FillResourcesPageState extends State {
                             height: 10,
                           ),
                           Row(
+                            // Поле для ввода воды
                             children: [
                               Container(
                                 child: const Text('Вода:'),
@@ -192,6 +205,7 @@ class FillResourcesPageState extends State {
                             height: 10,
                           ),
                           Row(
+                            // Поле для ввода денег
                             children: [
                               Container(
                                 child: const Text('Деньги:'),
@@ -216,10 +230,12 @@ class FillResourcesPageState extends State {
                       height: 30,
                     ),
                     ElevatedButton(
+                      // Кнопка для заполнения
                       onPressed: _fillResources,
                       child: const Text('Заполнить'),
                     ),
                     ElevatedButton(
+                      // Кнопка возвращения на главную страницу
                       onPressed: () {
                         Navigator.pop(context);
                       },
