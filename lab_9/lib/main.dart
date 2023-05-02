@@ -66,9 +66,40 @@ class FillResourcesPage extends StatefulWidget {
   State<StatefulWidget> createState() => FillResourcesPageState();
 }
 
-class FillResourcesPageState extends State {
+class CoffeeMachineViewState extends State {
+
+  // Поля для отображения ресурсов
+  int coffeeAmount = 0;
+  int milkAmount = 0;
+  int waterAmount = 0;
+  int cashAmount = 0;
+  //
+
+  CoffeeMachineViewState() {
+    // Конструктор по умолчанию
+    _updateResourceView(myMachine);
+  }
+
+  void _updateResourceView(Machine machine) {
+    // Функция для отображения текущих ресурсов на виджете
+    coffeeAmount = machine.resources.coffeeBeans;
+    milkAmount = machine.resources.milk;
+    waterAmount = machine.resources.water;
+    cashAmount = machine.resources.cash;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
+  }
+
+}
+
+class FillResourcesPageState extends CoffeeMachineViewState {
   // Страницы для заполнения ресурсов
   final _formKey = GlobalKey<FormState>();
+
+
 
   bool _myValidator(val) {
     // Валидатор
@@ -80,14 +111,6 @@ class FillResourcesPageState extends State {
     }
   }
 
-  void _updateResourceView(Machine machine) {
-    // Функция для отображения текущих ресурсов на виджете
-    coffeeAmount = machine.resources.coffeeBeans;
-    milkAmount = machine.resources.milk;
-    waterAmount = machine.resources.water;
-    cashAmount = machine.resources.cash;
-  }
-
   void _fillResources() {
     // Функция для заполнения ресурсов кофемашины
     if (_formKey.currentState!.validate()) {
@@ -97,17 +120,7 @@ class FillResourcesPageState extends State {
     }
   }
 
-  FillResourcesPageState() {
-    // Конструктор по умолчанию
-    _updateResourceView(myMachine);
-  }
 
-  // Поля для отображения ресурсов
-  int coffeeAmount = 0;
-  int milkAmount = 0;
-  int waterAmount = 0;
-  int cashAmount = 0;
-  //
 
   @override
   Widget build(BuildContext context) {
@@ -245,5 +258,43 @@ class FillResourcesPageState extends State {
                 ),
               ],
             )));
+  }
+}
+
+
+class CoffeeMachinePage extends StatefulWidget {
+  const CoffeeMachinePage ({Key? key}): super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => CoffeeMachinePageState();
+
+
+}
+
+
+class CoffeeMachinePageState extends CoffeeMachineViewState {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+        title: const Text('Кофемашина'),
+    ),
+    body: Container(
+      padding: const EdgeInsets.all(20),
+      child: ListView(
+        children: [
+          const Text('Resources:'),
+          // Надписи со значениями ресурсов
+          Text('Beans: $coffeeAmount'),
+          Text('Milk: $milkAmount'),
+          Text('Water: $waterAmount'),
+          Text('Cash: $cashAmount'),
+          //
+        ],
+      ),
+    )
+    );
   }
 }
