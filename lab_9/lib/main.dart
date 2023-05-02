@@ -309,15 +309,9 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
           Text('Cash: $cashAmount'),
           //
           buildButtonForCoffee(context, CoffeeTypes.espresso),
-          buildButtonForCoffee(context, CoffeeTypes.cappuccino)
-          // ElevatedButton(
-          //   onPressed: () {
-          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //       content: Text(myMachine.makeCoffee(espresso)),
-          //     ));
-          //   },
-          //   child: const Text('Эспрессо'),
-          // )
+          buildButtonForCoffee(context, CoffeeTypes.cappuccino),
+          buildButtonForCoffee(context, CoffeeTypes.americano),
+          buildButtonForCoffee(context, CoffeeTypes.latte),
         ],
       ),
     )
