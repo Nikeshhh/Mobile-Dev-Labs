@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lab_9/classes/coffee_types.dart';
 import 'classes/coffee_machine.dart';
 import 'classes/coffee.dart';
+import 'classes/enums.dart';
 import 'dart:io';
 
 Coffee myCoffee = Coffee('Эспрессо', 50, 0, 50, 0);
@@ -16,6 +18,7 @@ void main() {
     routes: {
       '/': (BuildContext context) => MyHomePage(),
       'fillResources': (BuildContext context) => FillResourcesPage(),
+      'mainPage': (BuildContext context) => CoffeeMachinePage(),
     },
   ));
 }
@@ -35,11 +38,7 @@ class MyHomePage extends StatelessWidget {
           children: [
             const Text('Хотите выпить кофе?'),
             ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(myMachine.makeCoffee(myCoffee)),
-                ));
-              },
+              onPressed: () => Navigator.pushNamed(context, 'mainPage'),
               child: const Text('Да'),
             ),
             ElevatedButton(
@@ -275,6 +274,23 @@ class CoffeeMachinePage extends StatefulWidget {
 class CoffeeMachinePageState extends CoffeeMachineViewState {
   final _formKey = GlobalKey<FormState>();
 
+  Widget buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
+    Coffee coffee = getCoffeeType(coffeeType);
+    String name = coffee.name;
+    return ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(myMachine.makeCoffee(coffee)),
+        ));
+        setState(() {
+          _updateResourceView(myMachine);
+        });
+
+      },
+      child: Text(name),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -292,9 +308,22 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
           Text('Water: $waterAmount'),
           Text('Cash: $cashAmount'),
           //
+          buildButtonForCoffee(context, CoffeeTypes.espresso),
+          buildButtonForCoffee(context, CoffeeTypes.cappuccino)
+          // ElevatedButton(
+          //   onPressed: () {
+          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //       content: Text(myMachine.makeCoffee(espresso)),
+          //     ));
+          //   },
+          //   child: const Text('Эспрессо'),
+          // )
         ],
       ),
     )
     );
   }
 }
+
+
+
