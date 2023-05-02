@@ -66,12 +66,14 @@ class FillResourcesPage extends StatefulWidget {
 }
 
 class CoffeeMachineViewState extends State {
+  // Класс для страниц, которые отображают ресурсы кофемашины
 
   // Поля для отображения ресурсов
   int coffeeAmount = 0;
   int milkAmount = 0;
   int waterAmount = 0;
   int cashAmount = 0;
+
   //
 
   CoffeeMachineViewState() {
@@ -91,14 +93,11 @@ class CoffeeMachineViewState extends State {
   Widget build(BuildContext context) {
     throw UnimplementedError();
   }
-
 }
 
 class FillResourcesPageState extends CoffeeMachineViewState {
   // Страницы для заполнения ресурсов
   final _formKey = GlobalKey<FormState>();
-
-
 
   bool _myValidator(val) {
     // Валидатор
@@ -118,8 +117,6 @@ class FillResourcesPageState extends CoffeeMachineViewState {
       });
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -260,21 +257,19 @@ class FillResourcesPageState extends CoffeeMachineViewState {
   }
 }
 
-
 class CoffeeMachinePage extends StatefulWidget {
-  const CoffeeMachinePage ({Key? key}): super(key: key);
+  const CoffeeMachinePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CoffeeMachinePageState();
-
-
 }
 
-
 class CoffeeMachinePageState extends CoffeeMachineViewState {
+  // Основная страница с кофемашиной
   final _formKey = GlobalKey<FormState>();
 
   Widget buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
+    // Функция создания кнопки для приготовления определенного вида кофе
     Coffee coffee = getCoffeeType(coffeeType);
     String name = coffee.name;
     return ElevatedButton(
@@ -285,7 +280,6 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
         setState(() {
           _updateResourceView(myMachine);
         });
-
       },
       child: Text(name),
     );
@@ -295,29 +289,25 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: const Text('Кофемашина'),
-    ),
-    body: Container(
-      padding: const EdgeInsets.all(20),
-      child: ListView(
-        children: [
-          const Text('Resources:'),
-          // Надписи со значениями ресурсов
-          Text('Beans: $coffeeAmount'),
-          Text('Milk: $milkAmount'),
-          Text('Water: $waterAmount'),
-          Text('Cash: $cashAmount'),
-          //
-          buildButtonForCoffee(context, CoffeeTypes.espresso),
-          buildButtonForCoffee(context, CoffeeTypes.cappuccino),
-          buildButtonForCoffee(context, CoffeeTypes.americano),
-          buildButtonForCoffee(context, CoffeeTypes.latte),
-        ],
-      ),
-    )
-    );
+          title: const Text('Кофемашина'),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              const Text('Resources:'),
+              // Надписи со значениями ресурсов
+              Text('Beans: $coffeeAmount'),
+              Text('Milk: $milkAmount'),
+              Text('Water: $waterAmount'),
+              Text('Cash: $cashAmount'),
+              //
+              buildButtonForCoffee(context, CoffeeTypes.espresso),
+              buildButtonForCoffee(context, CoffeeTypes.cappuccino),
+              buildButtonForCoffee(context, CoffeeTypes.americano),
+              buildButtonForCoffee(context, CoffeeTypes.latte),
+            ],
+          ),
+        ));
   }
 }
-
-
-
