@@ -270,7 +270,7 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
 
   Coffee currentCoffee = cappuccino;
 
-  Widget buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
+  Widget _buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
     // Функция создания кнопки для приготовления определенного вида кофе
     Coffee coffee = getCoffeeType(coffeeType);
     String name = coffee.name;
@@ -287,7 +287,8 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
     );
   }
 
-  Widget buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
+  Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
+    // Функция создания варианта выбора вида кофе
     String name = coffee.name;
     return ListTile(
       title: Text(name),
@@ -323,10 +324,10 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
                   Text('Water: $waterAmount'),
                   Text('Cash: $cashAmount'),
                   // Радио кнопки для выбора кофе
-                  buildRadioButtonForCoffee(context, cappuccino),
-                  buildRadioButtonForCoffee(context, espresso),
-                  buildRadioButtonForCoffee(context, americano),
-                  buildRadioButtonForCoffee(context, latte),
+                  _buildRadioButtonForCoffee(context, cappuccino),
+                  _buildRadioButtonForCoffee(context, espresso),
+                  _buildRadioButtonForCoffee(context, americano),
+                  _buildRadioButtonForCoffee(context, latte),
                   //
                   // Кнопка приготовления кофе
                   ElevatedButton(
