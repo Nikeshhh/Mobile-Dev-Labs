@@ -268,6 +268,8 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
   // Основная страница с кофемашиной
   final _formKey = GlobalKey<FormState>();
 
+  Coffee currentCoffee = espresso;
+
   Widget buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
     // Функция создания кнопки для приготовления определенного вида кофе
     Coffee coffee = getCoffeeType(coffeeType);
@@ -282,6 +284,22 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
         });
       },
       child: Text(name),
+    );
+  }
+
+  Widget buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
+    String name = coffee.name;
+    return ListTile(
+      title: Text(name),
+      leading: Radio<Coffee>(
+        value: coffee,
+        groupValue: currentCoffee,
+        onChanged: (Coffee? value) {
+          setState(() {
+            currentCoffee = value!;
+          });
+        },
+      ),
     );
   }
 
@@ -301,11 +319,22 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
               Text('Milk: $milkAmount'),
               Text('Water: $waterAmount'),
               Text('Cash: $cashAmount'),
-              //
-              buildButtonForCoffee(context, CoffeeTypes.espresso),
-              buildButtonForCoffee(context, CoffeeTypes.cappuccino),
-              buildButtonForCoffee(context, CoffeeTypes.americano),
-              buildButtonForCoffee(context, CoffeeTypes.latte),
+              // Радио кнопки для выбора кофе
+              buildRadioButtonForCoffee(context, cappuccino),
+              buildRadioButtonForCoffee(context, espresso),
+              buildRadioButtonForCoffee(context, americano),
+              buildRadioButtonForCoffee(context, latte),
+              ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(myMachine.makeCoffee(currentCoffee)),
+                  ));
+                  setState(() {
+                    _updateResourceView(myMachine);
+                  });
+                },
+                child: const Text('Сделать кофе'),
+              ),
             ],
           ),
         ));
