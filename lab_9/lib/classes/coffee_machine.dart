@@ -77,10 +77,10 @@ class Machine {
   }
 
   void _subtractResources (Coffee coffee) {
-    _resources.coffeeBeans = (_resources.coffeeBeans - coffee.beansRequired);
-    _resources.water = (_resources.water - coffee.waterRequired);
-    _resources.milk = (_resources.milk - coffee.milkRequired);
-    _resources.cash = (_resources.cash - coffee.cashRequired);
+    _resources.coffeeBeans -=  coffee.beansRequired;
+    _resources.water -= coffee.waterRequired;
+    _resources.milk -= coffee.milkRequired;
+    _resources.cash += coffee.cashRequired;
   }
 
   String makeCoffee (Coffee coffee) {

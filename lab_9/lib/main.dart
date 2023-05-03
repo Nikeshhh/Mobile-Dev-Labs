@@ -158,7 +158,7 @@ class FillResourcesPageState extends CoffeeMachineViewState {
                                       int.parse(value) <= 0) {
                                     return 'Ошибка ввода';
                                   } else {
-                                    myMachine.resources.coffeeBeans =
+                                    myMachine.resources.coffeeBeans +=
                                         int.parse(value);
                                   }
                                 }),
@@ -181,7 +181,7 @@ class FillResourcesPageState extends CoffeeMachineViewState {
                                       int.parse(value) <= 0) {
                                     return 'Ошибка ввода';
                                   } else {
-                                    myMachine.resources.milk = int.parse(value);
+                                    myMachine.resources.milk += int.parse(value);
                                   }
                                 }),
                               )
@@ -203,7 +203,7 @@ class FillResourcesPageState extends CoffeeMachineViewState {
                                       int.parse(value) <= 0) {
                                     return 'Ошибка ввода';
                                   } else {
-                                    myMachine.resources.water =
+                                    myMachine.resources.water +=
                                         int.parse(value);
                                   }
                                 }),
@@ -226,7 +226,7 @@ class FillResourcesPageState extends CoffeeMachineViewState {
                                       int.parse(value) <= 0) {
                                     return 'Ошибка ввода';
                                   } else {
-                                    myMachine.resources.cash = int.parse(value);
+                                    myMachine.resources.cash += int.parse(value);
                                   }
                                 }),
                               )
@@ -268,7 +268,7 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
   // Основная страница с кофемашиной
   final _formKey = GlobalKey<FormState>();
 
-  Coffee currentCoffee = espresso;
+  Coffee currentCoffee = cappuccino;
 
   Widget buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
     // Функция создания кнопки для приготовления определенного вида кофе
@@ -313,29 +313,37 @@ class CoffeeMachinePageState extends CoffeeMachineViewState {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const Text('Resources:'),
-              // Надписи со значениями ресурсов
-              Text('Beans: $coffeeAmount'),
-              Text('Milk: $milkAmount'),
-              Text('Water: $waterAmount'),
-              Text('Cash: $cashAmount'),
-              // Радио кнопки для выбора кофе
-              buildRadioButtonForCoffee(context, cappuccino),
-              buildRadioButtonForCoffee(context, espresso),
-              buildRadioButtonForCoffee(context, americano),
-              buildRadioButtonForCoffee(context, latte),
-              ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(myMachine.makeCoffee(currentCoffee)),
-                  ));
-                  setState(() {
-                    _updateResourceView(myMachine);
-                  });
-                },
-                child: const Text('Сделать кофе'),
-              ),
-            ],
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Resources:'),
+                  // Надписи со значениями ресурсов
+                  Text('Beans: $coffeeAmount'),
+                  Text('Milk: $milkAmount'),
+                  Text('Water: $waterAmount'),
+                  Text('Cash: $cashAmount'),
+                  // Радио кнопки для выбора кофе
+                  buildRadioButtonForCoffee(context, cappuccino),
+                  buildRadioButtonForCoffee(context, espresso),
+                  buildRadioButtonForCoffee(context, americano),
+                  buildRadioButtonForCoffee(context, latte),
+                  //
+                  // Кнопка приготовления кофе
+                  ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(myMachine.makeCoffee(currentCoffee)),
+                      ));
+                      setState(() {
+                        _updateResourceView(myMachine);
+                      });
+                    },
+                    child: const Text('Сделать кофе'),
+                  ),
+                  //
+                ],
+              )
+            ]
           ),
         ));
   }
