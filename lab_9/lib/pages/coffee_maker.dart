@@ -103,7 +103,7 @@ class CoffeeMachinePageState extends ViewPageState {
             // Кнопка приготовления кофе
             ElevatedButton(
               onPressed: () async {
-                var answer = await myMachine.makeCoffee(currentCoffee);
+                String answer = await myMachine.makeCoffee(currentCoffee);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(answer),
                   duration: const Duration(seconds: 1),
