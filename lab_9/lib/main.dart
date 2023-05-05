@@ -33,6 +33,7 @@ class MyTabBar extends State {
   // Класс для страниц, которые отображают ресурсы кофемашины
 
   final _formKey = GlobalKey<FormState>();
+  final _moneyFormKey = GlobalKey<FormState>();
 
   bool _myValidator(val) {
     // Валидатор
@@ -53,16 +54,20 @@ class MyTabBar extends State {
     }
   }
 
+  void _addMoney() {
+    if (_moneyFormKey.currentState!.validate()) {
+      setState(() {
+      });
+    }
+  }
+
   // Поля для отображения ресурсов
   Coffee currentCoffee = cappuccino;
   int coffeeAmount = 0;
   int milkAmount = 0;
   int waterAmount = 0;
   int cashAmount = 0;
-
   //
-
-  int money = 0;
 
   MyTabBar() {
     // Конструктор по умолчанию
@@ -161,6 +166,35 @@ class MyTabBar extends State {
               child: const Text('Сделать кофе'),
             ),
           ],
+        ),
+        Form(
+          key: _moneyFormKey,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        _myValidator(value) ||
+                        int.parse(value) <= 0) {
+                      return 'Ошибка ввода';
+                    } else {
+                      money += int.parse(value);
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Кофе',
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              IconButton(
+                // Кнопка для заполнения
+                onPressed: _addMoney,
+                icon: const Icon(Icons.add),
+              ),
+            ],
+          ),
         )
       ]),
     );
@@ -218,15 +252,16 @@ class MyTabBar extends State {
                         // Поле для ввода молока
                         children: [
                           Expanded(
-                            child: TextFormField(validator: (value) {
-                              if (value!.isEmpty ||
-                                  _myValidator(value) ||
-                                  int.parse(value) <= 0) {
-                                return 'Ошибка ввода';
-                              } else {
-                                myMachine.resources.milk += int.parse(value);
-                              }
-                            },
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    _myValidator(value) ||
+                                    int.parse(value) <= 0) {
+                                  return 'Ошибка ввода';
+                                } else {
+                                  myMachine.resources.milk += int.parse(value);
+                                }
+                              },
                               decoration: const InputDecoration(
                                 hintText: 'Молоко',
                               ),
@@ -242,15 +277,16 @@ class MyTabBar extends State {
                         // Поле для ввода воды
                         children: [
                           Expanded(
-                            child: TextFormField(validator: (value) {
-                              if (value!.isEmpty ||
-                                  _myValidator(value) ||
-                                  int.parse(value) <= 0) {
-                                return 'Ошибка ввода';
-                              } else {
-                                myMachine.resources.water += int.parse(value);
-                              }
-                            },
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    _myValidator(value) ||
+                                    int.parse(value) <= 0) {
+                                  return 'Ошибка ввода';
+                                } else {
+                                  myMachine.resources.water += int.parse(value);
+                                }
+                              },
                               decoration: const InputDecoration(
                                 hintText: 'Вода',
                               ),
@@ -266,15 +302,16 @@ class MyTabBar extends State {
                         // Поле для ввода денег
                         children: [
                           Expanded(
-                            child: TextFormField(validator: (value) {
-                              if (value!.isEmpty ||
-                                  _myValidator(value) ||
-                                  int.parse(value) <= 0) {
-                                return 'Ошибка ввода';
-                              } else {
-                                myMachine.resources.cash += int.parse(value);
-                              }
-                            },
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    _myValidator(value) ||
+                                    int.parse(value) <= 0) {
+                                  return 'Ошибка ввода';
+                                } else {
+                                  myMachine.resources.cash += int.parse(value);
+                                }
+                              },
                               decoration: const InputDecoration(
                                 hintText: 'Наличные',
                               ),

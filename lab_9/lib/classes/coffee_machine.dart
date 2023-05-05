@@ -1,4 +1,5 @@
 import 'coffee.dart';
+int money = 1;
 
 class Resources {
   int _coffeeBeans = 0;
@@ -68,7 +69,7 @@ class Machine {
     if (coffee.beansRequired < _resources.coffeeBeans &&
         coffee.waterRequired < _resources.water &&
         coffee.milkRequired < _resources.milk &&
-        coffee.cashRequired < _resources.cash) {
+        coffee.cashRequired < money) {
       return true;
     }
     else {
@@ -81,6 +82,7 @@ class Machine {
     _resources.water -= coffee.waterRequired;
     _resources.milk -= coffee.milkRequired;
     _resources.cash += coffee.cashRequired;
+    money -= coffee.cashRequired;
   }
 
   String makeCoffee (Coffee coffee) {
