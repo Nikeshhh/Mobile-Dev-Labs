@@ -1,4 +1,5 @@
 import 'coffee.dart';
+import 'asyncs.dart';
 int money = 1;
 
 class Resources {
@@ -85,9 +86,10 @@ class Machine {
     money -= coffee.cashRequired;
   }
 
-  String makeCoffee (Coffee coffee) {
+  Future<String> makeCoffee (Coffee coffee) async {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.name;
+      await mixMilk();
       _subtractResources(coffee);
       return ('Кофе готово - $coffeeName');
     }

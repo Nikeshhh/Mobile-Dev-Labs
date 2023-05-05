@@ -30,7 +30,7 @@ class TabBarWidget extends StatefulWidget {
 }
 
 class MyTabBar extends State {
-  // Класс для страниц, которые отображают ресурсы кофемашины
+  // Главная страница
 
   final _formKey = GlobalKey<FormState>();
   final _moneyFormKey = GlobalKey<FormState>();
@@ -156,9 +156,11 @@ class MyTabBar extends State {
             _buildRadioButtonForCoffee(context, latte),
             // Кнопка приготовления кофе
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                var answer = await myMachine.makeCoffee(currentCoffee);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(myMachine.makeCoffee(currentCoffee)),
+                  content: Text(answer),
+                  duration: const Duration(seconds: 1),
                 ));
                 setState(() {
                   _updateResourceView(myMachine);
