@@ -14,89 +14,21 @@ Machine myMachine = Machine(Resources(
     ));
 
 void main() {
-  runApp(MaterialApp(
-    routes: {
-      '/': (BuildContext context) => MyHomePage(),
-      'fillResources': (BuildContext context) => FillResourcesPage(),
-      'mainPage': (BuildContext context) => CoffeeMachinePage(),
-    },
+  runApp(const MaterialApp(
+    home: TabBarWidget(),
   ));
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class TabBarWidget extends StatefulWidget {
+  const TabBarWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Кофемашина'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Хотите выпить кофе?'),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, 'mainPage'),
-              child: const Text('Да'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Нет'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, 'fillResources');
-              },
-              child: const Text('Заполнить ресурсы'),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  State<StatefulWidget> createState() => MyTabBar();
 }
 
-class FillResourcesPage extends StatefulWidget {
-  const FillResourcesPage({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => FillResourcesPageState();
-}
-
-class CoffeeMachineViewState extends State {
+class MyTabBar extends State {
   // Класс для страниц, которые отображают ресурсы кофемашины
 
-  // Поля для отображения ресурсов
-  int coffeeAmount = 0;
-  int milkAmount = 0;
-  int waterAmount = 0;
-  int cashAmount = 0;
-
-  //
-
-  CoffeeMachineViewState() {
-    // Конструктор по умолчанию
-    _updateResourceView(myMachine);
-  }
-
-  void _updateResourceView(Machine machine) {
-    // Функция для отображения текущих ресурсов на виджете
-    coffeeAmount = machine.resources.coffeeBeans;
-    milkAmount = machine.resources.milk;
-    waterAmount = machine.resources.water;
-    cashAmount = machine.resources.cash;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
-  }
-}
-
-class FillResourcesPageState extends CoffeeMachineViewState {
-  // Страницы для заполнения ресурсов
   final _formKey = GlobalKey<FormState>();
 
   bool _myValidator(val) {
@@ -118,13 +50,80 @@ class FillResourcesPageState extends CoffeeMachineViewState {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Кофемашина'),
-        ),
-        body: Container(
+  // Поля для отображения ресурсов
+  Coffee currentCoffee = cappuccino;
+  int coffeeAmount = 0;
+  int milkAmount = 0;
+  int waterAmount = 0;
+  int cashAmount = 0;
+  //
+
+  int currentPage = 0;
+
+  MyTabBar() {
+    // Конструктор по умолчанию
+    _updateResourceView(myMachine);
+  }
+
+  Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
+    // Функция создания варианта выбора вида кофе
+    String name = coffee.name;
+    return ListTile(
+      title: Text(name),
+      leading: Radio<Coffee>(
+        value: coffee,
+        groupValue: currentCoffee,
+        onChanged: (Coffee? value) {
+          setState(() {
+            currentCoffee = value!;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildCoffeeMachinePage(BuildContext context){
+    return Container(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Resources:'),
+                    // Надписи со значениями ресурсов
+                    Text('Beans: $coffeeAmount'),
+                    Text('Milk: $milkAmount'),
+                    Text('Water: $waterAmount'),
+                    Text('Cash: $cashAmount'),
+                    // Радио кнопки для выбора кофе
+                    _buildRadioButtonForCoffee(context, cappuccino),
+                    _buildRadioButtonForCoffee(context, espresso),
+                    _buildRadioButtonForCoffee(context, americano),
+                    _buildRadioButtonForCoffee(context, latte),
+                    //
+                    // Кнопка приготовления кофе
+                    ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(myMachine.makeCoffee(currentCoffee)),
+                        ));
+                        setState(() {
+                          _updateResourceView(myMachine);
+                        });
+                      },
+                      child: const Text('Сделать кофе'),
+                    ),
+                    //
+                  ],
+                )
+              ]
+          ),
+        );
+  }
+
+  Widget _buildFillResourcesPage(BuildContext context){
+    return Container(
             padding: const EdgeInsets.all(20),
             child: ListView(
               children: [
@@ -253,99 +252,38 @@ class FillResourcesPageState extends CoffeeMachineViewState {
                   ],
                 ),
               ],
-            )));
+            ));
   }
-}
 
-class CoffeeMachinePage extends StatefulWidget {
-  const CoffeeMachinePage({Key? key}) : super(key: key);
+  void _updateResourceView(Machine machine) {
+    // Функция для отображения текущих ресурсов на виджете
+    coffeeAmount = machine.resources.coffeeBeans;
+    milkAmount = machine.resources.milk;
+    waterAmount = machine.resources.water;
+    cashAmount = machine.resources.cash;
+  }
 
   @override
-  State<StatefulWidget> createState() => CoffeeMachinePageState();
-}
-
-class CoffeeMachinePageState extends CoffeeMachineViewState {
-  // Основная страница с кофемашиной
-  final _formKey = GlobalKey<FormState>();
-
-  Coffee currentCoffee = cappuccino;
-
-  Widget _buildButtonForCoffee(BuildContext context, CoffeeTypes coffeeType) {
-    // Функция создания кнопки для приготовления определенного вида кофе
-    Coffee coffee = getCoffeeType(coffeeType);
-    String name = coffee.name;
-    return ElevatedButton(
-      onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(myMachine.makeCoffee(coffee)),
-        ));
-        setState(() {
-          _updateResourceView(myMachine);
-        });
-      },
-      child: Text(name),
-    );
-  }
-
-  Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
-    // Функция создания варианта выбора вида кофе
-    String name = coffee.name;
-    return ListTile(
-      title: Text(name),
-      leading: Radio<Coffee>(
-        value: coffee,
-        groupValue: currentCoffee,
-        onChanged: (Coffee? value) {
-          setState(() {
-            currentCoffee = value!;
-          });
-        },
+  Widget build(BuildContext context){
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.coffee_maker)),
+              Tab(icon: Icon(Icons.refresh)),
+            ],
+          ),
+          title: const Text('Coffee'),
+        ),
+        body: TabBarView(
+          children: [
+            _buildCoffeeMachinePage(context),
+            _buildFillResourcesPage(context),
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Кофемашина'),
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text('Resources:'),
-                  // Надписи со значениями ресурсов
-                  Text('Beans: $coffeeAmount'),
-                  Text('Milk: $milkAmount'),
-                  Text('Water: $waterAmount'),
-                  Text('Cash: $cashAmount'),
-                  // Радио кнопки для выбора кофе
-                  _buildRadioButtonForCoffee(context, cappuccino),
-                  _buildRadioButtonForCoffee(context, espresso),
-                  _buildRadioButtonForCoffee(context, americano),
-                  _buildRadioButtonForCoffee(context, latte),
-                  //
-                  // Кнопка приготовления кофе
-                  ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(myMachine.makeCoffee(currentCoffee)),
-                      ));
-                      setState(() {
-                        _updateResourceView(myMachine);
-                      });
-                    },
-                    child: const Text('Сделать кофе'),
-                  ),
-                  //
-                ],
-              )
-            ]
-          ),
-        ));
   }
 }
