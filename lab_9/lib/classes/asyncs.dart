@@ -17,5 +17,6 @@ Future<void> mixMilk() {
 
 Future<void> mixCoffeeAndMilk() async {
   // Смешивание кофе и молока, после заваривания кофе и взбития молока
+  print('Начало смешивания молока и кофе');
   return Future.delayed(const Duration(seconds: 3), () => print('Конец смешивания кофе и молока'));
 }
