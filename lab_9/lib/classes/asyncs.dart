@@ -1,47 +1,21 @@
-Future<String> heatWaterProcess() {
+Future<void> heatWater() {
   // Процесс нагрева воды
-  return Future.delayed(const Duration(seconds: 3), () => 'Вода готова!');
-}
-
-Future<void> heatWater() async {
-  // Нагрев воды
   print('Начало нагрева воды');
-  await heatWaterProcess();
-  print('Конец нагрева воды');
-}
-
-Future<String> heatCoffeeProcess() async {
-  return Future.delayed(const Duration(seconds: 5), () => 'Кофе заварен!');
+  return Future.delayed(const Duration(seconds: 3), () => print('Конец нагрева воды'));
 }
 
 Future<void> heatCoffee() async {
-  // Заваривание кофе, после нагрева воды
-  await heatWater();
   print('Начало заваривания кофе');
-  await heatCoffeeProcess();
-  print('Конец заваривания кофе');
+  return Future.delayed(const Duration(seconds: 5), () => print('Конец заваривания кофе'));
 }
 
-Future<String> mixMilkProcess() {
-  return Future.delayed(const Duration(seconds: 5), () => 'Молоков взбито!');
-}
-
-Future<void> mixMilk() async {
+Future<void> mixMilk() {
   // Взбвание молока, вместе с завариванием кофе
   print('Начало взбивания молока');
-  heatCoffee();
-  await mixMilkProcess();
-  print('Конец взбивания молока');
-}
-
-Future<String> mixCoffeeAndMilkProcess() {
-  return Future.delayed(const Duration(seconds: 3), () => 'Молоко смешано!');
+  return Future.delayed(const Duration(seconds: 5), () => print('Конец взбивания молока'));
 }
 
 Future<void> mixCoffeeAndMilk() async {
   // Смешивание кофе и молока, после заваривания кофе и взбития молока
-  await mixMilk();
-  print('Начало смешивания кофе и молока');
-  await mixCoffeeAndMilkProcess();
-  print('Конец смешивания кофе и молока');
+  return Future.delayed(const Duration(seconds: 3), () => print('Конец смешивания кофе и молока'));
 }

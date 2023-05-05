@@ -89,8 +89,13 @@ class Machine {
   Future<String> makeCoffee (Coffee coffee) async {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.name;
-      await mixMilk();
       _subtractResources(coffee);
+      if (coffee.milkRequired > 0){
+        await mixCoffeeAndMilk();
+      }
+      else{
+        await heatCoffee();
+      }
       return ('Кофе готово - $coffeeName');
     }
     else{
