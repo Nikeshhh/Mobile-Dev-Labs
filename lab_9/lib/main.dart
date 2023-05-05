@@ -144,7 +144,8 @@ class MyTabBar extends State {
                       ),
                     )
                   ],
-                )),
+                )
+            ),
             const Divider(
               height: 10,
             ),
@@ -183,15 +184,15 @@ class MyTabBar extends State {
                     }
                   },
                   decoration: const InputDecoration(
-                    hintText: 'Кофе',
+                    hintText: 'Наличные',
                   ),
                   keyboardType: TextInputType.number,
                 ),
               ),
-              IconButton(
-                // Кнопка для заполнения
+              ElevatedButton(
                 onPressed: _addMoney,
-                icon: const Icon(Icons.add),
+                child: const Icon(Icons.add),
+
               ),
             ],
           ),
@@ -210,13 +211,24 @@ class MyTabBar extends State {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Resources:'),
-                // Надписи со значениями ресурсов
-                Text('Beans: $coffeeAmount'),
-                Text('Milk: $milkAmount'),
-                Text('Water: $waterAmount'),
-                Text('Cash: $cashAmount'),
-                //
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.red, width: 5),
+                      color: Colors.blueGrey),
+                  child: Column(
+                    children: [
+                      Text('Resources:', style: _styleForText()),
+                      // Надписи со значениями ресурсов
+                      Text('Beans: $coffeeAmount', style: _styleForText()),
+                      Text('Milk: $milkAmount', style: _styleForText()),
+                      Text('Water: $waterAmount', style: _styleForText()),
+                      Text('Cash: $cashAmount', style: _styleForText()),
+                    ],
+                  )
+                ),
+                const Divider(height: 20,),
                 Form(
                   // Виджет формы
                   key: _formKey,
@@ -329,15 +341,8 @@ class MyTabBar extends State {
                 ElevatedButton(
                   // Кнопка для заполнения
                   onPressed: _fillResources,
-                  child: const Text('Заполнить'),
+                  child: const Text('Добавить'),
                 ),
-                ElevatedButton(
-                  // Кнопка возвращения на главную страницу
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Назад'),
-                )
               ],
             ),
           ],
