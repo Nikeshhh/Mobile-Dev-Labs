@@ -90,11 +90,13 @@ class Machine {
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.name;
       _subtractResources(coffee);
+      await heatWater(); // Нагрев воды
       if (coffee.milkRequired > 0){
-        await mixCoffeeAndMilk();
+        await Future.wait([heatCoffee(), mixMilk()]); // Заваривание кофе и взбивание молока
+        await mixCoffeeAndMilk(); // Смешивание кофе и молока
       }
       else{
-        await heatCoffee();
+        await heatCoffee(); // Заваривание кофе
       }
       return ('Кофе готово - $coffeeName');
     }
