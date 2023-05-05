@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab_9/classes/coffee_types.dart';
+import 'package:lab_9/coffee_types.dart';
 import 'package:lab_9/classes/coffee_machine.dart';
 import 'package:lab_9/classes/coffee.dart';
 import 'package:lab_9/classes/page.dart';
@@ -22,10 +22,6 @@ class CoffeeMachinePageState extends ViewPageState {
     if (_moneyFormKey.currentState!.validate()) {
       setState(() {});
     }
-  }
-
-  TextStyle _styleForText() {
-    return const TextStyle(fontSize: 24);
   }
 
   Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee) {
@@ -70,9 +66,9 @@ class CoffeeMachinePageState extends ViewPageState {
                           children: [
                             // Надписи со значениями ресурсов
                             Text('Beans: $coffeeAmount',
-                                style: _styleForText()),
-                            Text('Milk: $milkAmount', style: _styleForText()),
-                            Text('Water: $waterAmount', style: _styleForText()),
+                                style: styleForText()),
+                            Text('Milk: $milkAmount', style: styleForText()),
+                            Text('Water: $waterAmount', style: styleForText()),
                           ],
                         )
                       ],
@@ -89,8 +85,8 @@ class CoffeeMachinePageState extends ViewPageState {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Coffee maker', style: _styleForText()),
-                          Text('Your money: $money', style: _styleForText()),
+                          Text('Coffee maker', style: styleForText()),
+                          Text('Your money: $money', style: styleForText()),
                         ],
                       ),
                     )

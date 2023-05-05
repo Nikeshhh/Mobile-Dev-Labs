@@ -33,7 +33,7 @@ class MyTabBar extends State {
               Tab(icon: Icon(Icons.refresh)),
             ],
           ),
-          title: const Text('Coffee'),
+          title: const Text('Кофемашина'),
         ),
         body: const TabBarView(
           children: [

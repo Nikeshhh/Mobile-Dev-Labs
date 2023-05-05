@@ -1,4 +1,4 @@
-import 'coffee.dart';
+import 'classes/coffee.dart';
 
 Coffee espresso = Coffee(
     'Эспрессо',

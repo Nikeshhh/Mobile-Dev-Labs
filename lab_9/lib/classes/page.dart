@@ -9,6 +9,8 @@ class ViewPage extends StatefulWidget {
 }
 
 class ViewPageState extends State {
+  // Общий класс для страницы, предоставляющий поля и методы для отображения
+
   // Поля для отображения ресурсов
   int coffeeAmount = 0;
   int milkAmount = 0;
@@ -28,6 +30,10 @@ class ViewPageState extends State {
     } on Exception {
       return true;
     }
+  }
+
+  TextStyle styleForText() {
+    return const TextStyle(fontSize: 24);
   }
 
   void updateResourceView(Machine machine) {

@@ -21,9 +21,7 @@ class FillResourcesPageState extends ViewPageState {
     }
   }
 
-  TextStyle _styleForText() {
-    return const TextStyle(fontSize: 24);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +42,12 @@ class FillResourcesPageState extends ViewPageState {
                         color: Colors.blueGrey),
                     child: Column(
                       children: [
-                        Text('Resources:', style: _styleForText()),
+                        Text('Resources:', style: styleForText()),
                         // Надписи со значениями ресурсов
-                        Text('Beans: $coffeeAmount', style: _styleForText()),
-                        Text('Milk: $milkAmount', style: _styleForText()),
-                        Text('Water: $waterAmount', style: _styleForText()),
-                        Text('Cash: $cashAmount', style: _styleForText()),
+                        Text('Beans: $coffeeAmount', style: styleForText()),
+                        Text('Milk: $milkAmount', style: styleForText()),
+                        Text('Water: $waterAmount', style: styleForText()),
+                        Text('Cash: $cashAmount', style: styleForText()),
                       ],
                     )),
                 const Divider(
