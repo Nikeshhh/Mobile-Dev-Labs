@@ -14,8 +14,11 @@ Machine myMachine = Machine(Resources(
     ));
 
 void main() {
-  runApp(const MaterialApp(
-    home: TabBarWidget(),
+  runApp(MaterialApp(
+    home: const TabBarWidget(),
+    theme: ThemeData(
+      primarySwatch: Colors.red,
+    ),
   ));
 }
 
@@ -56,16 +59,17 @@ class MyTabBar extends State {
   int milkAmount = 0;
   int waterAmount = 0;
   int cashAmount = 0;
+
   //
 
-  int currentPage = 0;
+  int money = 0;
 
   MyTabBar() {
     // Конструктор по умолчанию
     _updateResourceView(myMachine);
   }
 
-  Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee){
+  Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee) {
     // Функция создания варианта выбора вида кофе
     String name = coffee.name;
     return ListTile(
@@ -82,177 +86,225 @@ class MyTabBar extends State {
     );
   }
 
-  Widget _buildCoffeeMachinePage(BuildContext context){
-    return Container(
-          padding: const EdgeInsets.all(20),
-          child: ListView(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Resources:'),
-                    // Надписи со значениями ресурсов
-                    Text('Beans: $coffeeAmount'),
-                    Text('Milk: $milkAmount'),
-                    Text('Water: $waterAmount'),
-                    Text('Cash: $cashAmount'),
-                    // Радио кнопки для выбора кофе
-                    _buildRadioButtonForCoffee(context, cappuccino),
-                    _buildRadioButtonForCoffee(context, espresso),
-                    _buildRadioButtonForCoffee(context, americano),
-                    _buildRadioButtonForCoffee(context, latte),
-                    //
-                    // Кнопка приготовления кофе
-                    ElevatedButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(myMachine.makeCoffee(currentCoffee)),
-                        ));
-                        setState(() {
-                          _updateResourceView(myMachine);
-                        });
-                      },
-                      child: const Text('Сделать кофе'),
-                    ),
-                    //
-                  ],
-                )
-              ]
-          ),
-        );
+  TextStyle _styleForText() {
+    return const TextStyle(fontSize: 24);
   }
 
-  Widget _buildFillResourcesPage(BuildContext context){
+  Widget _buildCoffeeMachinePage(BuildContext context) {
     return Container(
-            padding: const EdgeInsets.all(20),
-            child: ListView(
-              children: [
-                Column(
-                  // Колонка с виджетами
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      padding: const EdgeInsets.all(10),
+      child: ListView(children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                height: 300,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.red, width: 5),
+                    color: Colors.blueGrey),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Resources:'),
-                    // Надписи со значениями ресурсов
-                    Text('Beans: $coffeeAmount'),
-                    Text('Milk: $milkAmount'),
-                    Text('Water: $waterAmount'),
-                    Text('Cash: $cashAmount'),
-                    //
-                    Form(
-                      // Виджет формы
-                      key: _formKey,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Column(
+                          children: [
+                            // Надписи со значениями ресурсов
+                            Text('Beans: $coffeeAmount',
+                                style: _styleForText()),
+                            Text('Milk: $milkAmount', style: _styleForText()),
+                            Text('Water: $waterAmount', style: _styleForText()),
+                          ],
+                        )
+                      ],
+                    ),
+                    const Divider(
+                      height: 20,
+                    ),
+                    Container(
+                      width: 250,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.red, width: 4),
+                          color: Colors.yellow),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            // Поле для ввода кофе
-                            children: [
-                              Container(
-                                child: const Text('Кофе:'),
+                          Text('Coffee maker', style: _styleForText()),
+                          Text('Your money: $money', style: _styleForText()),
+                        ],
+                      ),
+                    )
+                  ],
+                )),
+            const Divider(
+              height: 10,
+            ),
+            // Радио кнопки для выбора кофе
+            _buildRadioButtonForCoffee(context, cappuccino),
+            _buildRadioButtonForCoffee(context, espresso),
+            _buildRadioButtonForCoffee(context, americano),
+            _buildRadioButtonForCoffee(context, latte),
+            // Кнопка приготовления кофе
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(myMachine.makeCoffee(currentCoffee)),
+                ));
+                setState(() {
+                  _updateResourceView(myMachine);
+                });
+              },
+              child: const Text('Сделать кофе'),
+            ),
+          ],
+        )
+      ]),
+    );
+  }
+
+  Widget _buildFillResourcesPage(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            Column(
+              // Колонка с виджетами
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text('Resources:'),
+                // Надписи со значениями ресурсов
+                Text('Beans: $coffeeAmount'),
+                Text('Milk: $milkAmount'),
+                Text('Water: $waterAmount'),
+                Text('Cash: $cashAmount'),
+                //
+                Form(
+                  // Виджет формы
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Row(
+                        // Поле для ввода кофе
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    _myValidator(value) ||
+                                    int.parse(value) <= 0) {
+                                  return 'Ошибка ввода';
+                                } else {
+                                  myMachine.resources.coffeeBeans +=
+                                      int.parse(value);
+                                }
+                              },
+                              decoration: const InputDecoration(
+                                hintText: 'Кофе',
                               ),
-                              Expanded(
-                                child: TextFormField(validator: (value) {
-                                  if (value!.isEmpty ||
-                                      _myValidator(value) ||
-                                      int.parse(value) <= 0) {
-                                    return 'Ошибка ввода';
-                                  } else {
-                                    myMachine.resources.coffeeBeans +=
-                                        int.parse(value);
-                                  }
-                                }),
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            height: 10,
-                          ),
-                          Row(
-                            // Поле для ввода молока
-                            children: [
-                              Container(
-                                child: const Text('Молоко:'),
-                              ),
-                              Expanded(
-                                child: TextFormField(validator: (value) {
-                                  if (value!.isEmpty ||
-                                      _myValidator(value) ||
-                                      int.parse(value) <= 0) {
-                                    return 'Ошибка ввода';
-                                  } else {
-                                    myMachine.resources.milk += int.parse(value);
-                                  }
-                                }),
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            height: 10,
-                          ),
-                          Row(
-                            // Поле для ввода воды
-                            children: [
-                              Container(
-                                child: const Text('Вода:'),
-                              ),
-                              Expanded(
-                                child: TextFormField(validator: (value) {
-                                  if (value!.isEmpty ||
-                                      _myValidator(value) ||
-                                      int.parse(value) <= 0) {
-                                    return 'Ошибка ввода';
-                                  } else {
-                                    myMachine.resources.water +=
-                                        int.parse(value);
-                                  }
-                                }),
-                              )
-                            ],
-                          ),
-                          const Divider(
-                            height: 10,
-                          ),
-                          Row(
-                            // Поле для ввода денег
-                            children: [
-                              Container(
-                                child: const Text('Деньги:'),
-                              ),
-                              Expanded(
-                                child: TextFormField(validator: (value) {
-                                  if (value!.isEmpty ||
-                                      _myValidator(value) ||
-                                      int.parse(value) <= 0) {
-                                    return 'Ошибка ввода';
-                                  } else {
-                                    myMachine.resources.cash += int.parse(value);
-                                  }
-                                }),
-                              )
-                            ],
+                              keyboardType: TextInputType.number,
+                            ),
                           )
                         ],
                       ),
-                    ),
-                    const Divider(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      // Кнопка для заполнения
-                      onPressed: _fillResources,
-                      child: const Text('Заполнить'),
-                    ),
-                    ElevatedButton(
-                      // Кнопка возвращения на главную страницу
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Назад'),
-                    )
-                  ],
+                      const Divider(
+                        height: 10,
+                      ),
+                      Row(
+                        // Поле для ввода молока
+                        children: [
+                          Expanded(
+                            child: TextFormField(validator: (value) {
+                              if (value!.isEmpty ||
+                                  _myValidator(value) ||
+                                  int.parse(value) <= 0) {
+                                return 'Ошибка ввода';
+                              } else {
+                                myMachine.resources.milk += int.parse(value);
+                              }
+                            },
+                              decoration: const InputDecoration(
+                                hintText: 'Молоко',
+                              ),
+                              keyboardType: TextInputType.number,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Divider(
+                        height: 10,
+                      ),
+                      Row(
+                        // Поле для ввода воды
+                        children: [
+                          Expanded(
+                            child: TextFormField(validator: (value) {
+                              if (value!.isEmpty ||
+                                  _myValidator(value) ||
+                                  int.parse(value) <= 0) {
+                                return 'Ошибка ввода';
+                              } else {
+                                myMachine.resources.water += int.parse(value);
+                              }
+                            },
+                              decoration: const InputDecoration(
+                                hintText: 'Вода',
+                              ),
+                              keyboardType: TextInputType.number,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Divider(
+                        height: 10,
+                      ),
+                      Row(
+                        // Поле для ввода денег
+                        children: [
+                          Expanded(
+                            child: TextFormField(validator: (value) {
+                              if (value!.isEmpty ||
+                                  _myValidator(value) ||
+                                  int.parse(value) <= 0) {
+                                return 'Ошибка ввода';
+                              } else {
+                                myMachine.resources.cash += int.parse(value);
+                              }
+                            },
+                              decoration: const InputDecoration(
+                                hintText: 'Наличные',
+                              ),
+                              keyboardType: TextInputType.number,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
+                const Divider(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  // Кнопка для заполнения
+                  onPressed: _fillResources,
+                  child: const Text('Заполнить'),
+                ),
+                ElevatedButton(
+                  // Кнопка возвращения на главную страницу
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Назад'),
+                )
               ],
-            ));
+            ),
+          ],
+        ));
   }
 
   void _updateResourceView(Machine machine) {
@@ -264,7 +316,7 @@ class MyTabBar extends State {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(

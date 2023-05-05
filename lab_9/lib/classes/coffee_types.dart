@@ -5,7 +5,7 @@ Coffee espresso = Coffee(
     50,
     0,
     50,
-    0
+    100
 );
 
 Coffee americano = Coffee(
