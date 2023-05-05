@@ -35,11 +35,12 @@ class FillResourcesPageState extends ViewPageState {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
+                  // Контейнер со значениями ресурсов
                     padding: const EdgeInsets.all(10),
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.red, width: 5),
-                        color: Colors.blueGrey),
+                        color: Colors.yellow),
                     child: Column(
                       children: [
                         Text('Resources:', style: styleForText()),

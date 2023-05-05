@@ -1,6 +1,8 @@
 import 'package:lab_9/classes/abstracts.dart';
 
 class Coffee extends ICoffee {
+  // Класс кофе
+
   String _name = '';
   int _beansRequired = 0;
   int _milkRequired = 0;
@@ -15,6 +17,7 @@ class Coffee extends ICoffee {
     this.cashRequired = cashRequired;
   }
 
+  @override
   String get name {
     return _name;
   }
@@ -39,22 +42,27 @@ class Coffee extends ICoffee {
     return _cashRequired;
   }
 
+  @override
   set name (String value) {
     _name = value;
   }
 
+  @override
   set beansRequired (int value) {
     _beansRequired = value;
   }
 
+  @override
   set milkRequired (int value) {
     _milkRequired = value;
   }
 
+  @override
   set waterRequired (int value) {
     _waterRequired = value;
   }
 
+  @override
   set cashRequired (int value) {
     _cashRequired = value;
   }

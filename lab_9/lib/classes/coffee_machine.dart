@@ -1,8 +1,10 @@
 import 'coffee.dart';
-import 'asyncs.dart';
-int money = 1;
+import 'async.dart';
+int money = 1000; // Деньги пользователя
 
 class Resources {
+  // Класс ресурсов кофемашины
+
   int _coffeeBeans = 0;
   int _milk = 0;
   int _water = 0;
@@ -50,6 +52,7 @@ class Resources {
 }
 
 class Machine {
+  // Класс кофемашины
   Resources _resources = Resources(0, 0, 0, 0);
 
   Machine (Resources resources) {
@@ -64,9 +67,8 @@ class Machine {
     return _resources;
   }
 
-
-
   bool _isAvailableResources (Coffee coffee) {
+    // Функция проверки на доступность ресурсов
     if (coffee.beansRequired < _resources.coffeeBeans &&
         coffee.waterRequired < _resources.water &&
         coffee.milkRequired < _resources.milk &&
@@ -79,6 +81,7 @@ class Machine {
   }
 
   void _subtractResources (Coffee coffee) {
+    // Функция уменьшения ресурсов
     _resources.coffeeBeans -=  coffee.beansRequired;
     _resources.water -= coffee.waterRequired;
     _resources.milk -= coffee.milkRequired;
@@ -87,6 +90,7 @@ class Machine {
   }
 
   Future<String> makeCoffee (Coffee coffee) async {
+    // Процесс приготовления кофе
     if (_isAvailableResources(coffee)){
       String coffeeName = coffee.name;
       _subtractResources(coffee);
@@ -107,6 +111,7 @@ class Machine {
 }
 
 Machine myMachine = Machine(Resources(
+  // Экземпляр кофемашины
     500, // Количество кофе (гр)
     500, // Количество молока (мл)
     290, // Количеcтво воды (мл)

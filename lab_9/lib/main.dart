@@ -3,6 +3,7 @@ import 'package:lab_9/pages/machine_resources.dart';
 import 'package:lab_9/pages/coffee_maker.dart';
 
 void main() {
+  // Точка входа программы
   runApp(MaterialApp(
     home: const TabBarWidget(),
     theme: ThemeData(

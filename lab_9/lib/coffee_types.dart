@@ -1,11 +1,12 @@
 import 'classes/coffee.dart';
+// Файл с видами кофе для кофемашины
 
 Coffee espresso = Coffee(
     'Эспрессо',
     50,
     0,
     50,
-    100
+    80
 );
 
 Coffee americano = Coffee(
@@ -13,7 +14,7 @@ Coffee americano = Coffee(
     25,
     0,
     150,
-    0
+    95
 );
 
 Coffee cappuccino = Coffee(
@@ -21,7 +22,7 @@ Coffee cappuccino = Coffee(
     25,
     100,
     25,
-    0
+    110
 );
 
 Coffee latte = Coffee(
@@ -29,5 +30,5 @@ Coffee latte = Coffee(
     25,
     150,
     20,
-    0
+    100
 );

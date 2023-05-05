@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lab_9/classes/coffee_machine.dart';
 
-class ViewPage extends StatefulWidget {
-  const ViewPage({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => ViewPageState();
-}
-
 class ViewPageState extends State {
   // Общий класс для страницы, предоставляющий поля и методы для отображения
 
