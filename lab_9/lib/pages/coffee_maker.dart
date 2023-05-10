@@ -27,8 +27,9 @@ class CoffeeMachinePageState extends ViewPageState {
   Widget _buildRadioButtonForCoffee(BuildContext context, Coffee coffee) {
     // Функция создания варианта выбора вида кофе
     String name = coffee.name;
+    int cost = coffee.cashRequired;
     return ListTile(
-      title: Text(name),
+      title: Text('$name ($cost р.)'),
       leading: Radio<Coffee>(
         value: coffee,
         groupValue: currentCoffee,
