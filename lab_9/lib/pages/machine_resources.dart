@@ -21,8 +21,6 @@ class FillResourcesPageState extends ViewPageState {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +33,7 @@ class FillResourcesPageState extends ViewPageState {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  // Контейнер со значениями ресурсов
+                    // Контейнер со значениями ресурсов
                     padding: const EdgeInsets.all(10),
                     width: double.infinity,
                     decoration: BoxDecoration(

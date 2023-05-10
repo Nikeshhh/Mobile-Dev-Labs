@@ -66,8 +66,7 @@ class CoffeeMachinePageState extends ViewPageState {
                         Column(
                           children: [
                             // Надписи со значениями ресурсов
-                            Text('Beans: $coffeeAmount',
-                                style: styleForText()),
+                            Text('Beans: $coffeeAmount', style: styleForText()),
                             Text('Milk: $milkAmount', style: styleForText()),
                             Text('Water: $waterAmount', style: styleForText()),
                           ],
