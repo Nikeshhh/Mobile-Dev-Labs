@@ -1,6 +1,6 @@
 import 'package:lab_9/classes/abstracts.dart';
 
-class Coffee extends ICoffee {
+class Coffee implements ICoffee {
   // Класс кофе
 
   String _name = '';
